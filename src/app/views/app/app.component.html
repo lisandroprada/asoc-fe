@@ -1,0 +1,41 @@
+<div class="grid-container">
+  <!-- <div class="menu-icon" (click)="toggleAside()">
+    <strong> &#9776;</strong>
+  </div> -->
+  <app-header
+    class="header"
+    (toogleSideBarAction)="toggleSideBar($event)"
+  ></app-header>
+  <div class="scroll">
+    <app-sidenav
+      class="aside"
+      [ngClass]="showMenu === true ? 'show' : ''"
+      [subMenuClick]="itemActive"
+      (toogleSideBarAction)="toggleSideBar($event)"
+    ></app-sidenav>
+
+    <div class="sub-aside" [ngClass]="collapsed ? 'collapsed' : ''">
+      <ul>
+        <ng-container *ngFor="let item of subMenuItems?.children">
+          <li
+            [routerLink]="item.routerLink"
+            (click)="setClass(item.routerLink)"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <span class="material-symbols-rounded">{{ item.icon }}</span>
+            <p>{{ item.text }}</p>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <app-footer class="footer"></app-footer>
+</div>

@@ -1,1 +1,455 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+
+$primary-color: #145388;
+$secondary-color: #3a3a3a;
+$background-color: #fff;
+
+html {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $primary-color;
+  box-sizing: border-box;
+  font-family: Poppins, Sans-serif;
+  font-size: 15px;
+  width: 100%;
+  position: fixed;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0px 1fr;
+  grid-template-rows: 80px 1fr 50px;
+
+  grid-template-areas:
+    "header header"
+    "aside main"
+    "aside footer";
+  height: 100vh;
+}
+
+.header {
+  grid-area: header;
+  background-color: rgb(255, 255, 255);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+}
+
+.search {
+  display: none;
+}
+
+.main {
+  grid-area: main;
+  background-color: white;
+  padding: 15px 15px 15px 15px;
+}
+
+// Scroll bar
+.scroll {
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+.header,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: darkblue;
+  padding: 0 15px;
+}
+
+/* flexing aside */
+.aside {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  overflow-y: auto;
+  z-index: 3;
+  padding-right: 5px;
+  transform: translateX(-245px);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+}
+
+.aside.show {
+  transform: translateX(0px);
+}
+
+.aside.active {
+  transform: translateX(0);
+}
+
+.aside_list {
+  padding: 0;
+  margin-top: 15px;
+  list-style-type: none;
+  z-index: 3;
+}
+
+.aside_list-item {
+  padding: 10px 20px 10px 20px;
+  font-size: 0.75rem;
+  color: #3a3a3a;
+  display: inline-grid;
+  justify-items: center;
+  width: 90px;
+  z-index: 3;
+  // border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.aside_list-item.active {
+  color: #145388;
+  border-left: 6px solid;
+  border-color: #145388;
+  padding-left: 14px;
+  z-index: 10;
+}
+
+.aside_list-item > span {
+  font-size: 2.25rem;
+}
+
+.aside_list-item > p {
+  margin-block-start: 0px;
+  padding-top: 0;
+}
+
+// Sub Menu
+.sub-aside {
+  width: 200px;
+  height: 90%;
+  border-radius: 4px;
+  top: 85px;
+  left: -300px;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px #80808038;
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+  background-color: white;
+  // transition: all 0.25s;
+  // -webkit-transition: all 0.25s;
+  transition: all 1s ease-in-out;
+}
+
+.collapsed {
+  left: 110px;
+  opacity: 1;
+  z-index: 4;
+  background-color: white;
+}
+
+.sub-aside ul {
+  color: $primary-color;
+  list-style: none;
+}
+
+.sub-aside > ul > li {
+  display: inline-flex;
+  padding-top: 10px;
+  align-items: center;
+  color: $secondary-color;
+  cursor: pointer;
+}
+
+.sub-aside span {
+  margin-right: 10px;
+}
+.sub-aside p {
+  font-size: 0.75rem;
+  // color: $secondary-color;
+}
+
+.sub-aside > ul > li:hover {
+  color: $primary-color;
+}
+
+.sub-aside .active {
+  color: $primary-color;
+}
+.menu_icon {
+  margin-right: 10px;
+  margin-top: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.menu_icon > span {
+  font-size: 2rem;
+  color: #145388;
+}
+
+.aside_list-item:hover {
+  // background-color: #2a93d5;
+  color: $primary-color;
+  cursor: pointer;
+  // color: white;
+  z-index: 3;
+}
+
+/* Layout for main content overview  and its cards*/
+.main_overview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.overview_card {
+  flex-basis: 250px;
+  flex-grow: 1;
+  margin: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  /* background-color: seagreen; */
+  height: 100px;
+  // border: 1px solid darkblue;
+  border-radius: 4px;
+  color: darkblue;
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+}
+/* Layout for main-cards section // below main_overview */
+.main_cards {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 500px 200px 300px;
+  grid-template-areas:
+    "card1"
+    "card2"
+    "card3";
+  grid-gap: 10px;
+}
+.card {
+  padding: 20px;
+  // border: 1px solid tomato;
+  border-radius: 4px;
+  color: tomato;
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+}
+
+.card:first-child {
+  grid-area: card1;
+}
+.card:nth-child(2) {
+  grid-area: card2;
+}
+.card:nth-child(3) {
+  grid-area: card3;
+}
+
+/* responsive layout */
+@media only screen and (min-width: 750px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 80px 1fr 50px;
+    grid-template-areas:
+      "header header"
+      "aside main"
+      "aside footer";
+    height: 100vh;
+  }
+
+  .aside {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: translateX(0);
+    position: fixed;
+    z-index: 3;
+    padding-right: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+  }
+
+  .main_cards {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 200px 300px;
+    grid-template-areas:
+      "card1 card2"
+      "card1 card3";
+    grid-gap: 10px;
+  }
+
+  // .header_search {
+  //   text-align: left;
+  //   margin-left: 44px;
+  //   color: #145388;
+  // }
+
+  .search {
+    display: block;
+    margin-left: 40px;
+    position: relative;
+    width: 230px;
+    border-radius: 20px;
+    background: #f0f0f0;
+
+    input {
+      border: initial;
+      background: transparent;
+      outline: initial !important;
+      font-size: 0.8rem;
+      width: 93%;
+      color: $primary-color;
+      padding: 0.4rem 1rem;
+      line-height: 2;
+    }
+
+    .search-icon {
+      font-size: 17px;
+      border-radius: 10px;
+      color: secondary-color;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      bottom: -10px;
+      right: 3px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.menu-icon {
+  position: fixed;
+  display: flex;
+  top: 2px;
+  left: 8px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  cursor: pointer;
+  padding: 12px;
+  color: #145388;
+}
+
+.header_menu-icon {
+  margin-left: 34px;
+  cursor: pointer;
+}
+.header_menu-icon > span {
+  font-size: 2.25rem;
+}
+
+.header_avatar > div {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  top: 20px;
+  right: 35px;
+}
+
+.header_avatar .dropdown-content {
+  display: none;
+  color: red;
+  list-style: none;
+  list-style-type: none;
+}
+
+.header_avatar .dropdown-content.dropDown_visible {
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 0.75rem;
+  border-radius: 0.1rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-color: rgba(58, 58, 58, 0.15);
+  top: 80px;
+  color: rgb(66, 66, 116);
+  display: inline-grid;
+  z-index: 999;
+}
+
+.header_avatar ul {
+  width: 100%;
+  margin-left: -40px;
+  list-style: none;
+}
+
+.header_avatar ul li {
+  padding: 5px 5px 10px 15px;
+}
+
+.header_avatar .divider {
+  border-color: #d7d7d7;
+}
+
+.header_avatar ul li:hover {
+  background: rgb(237, 233, 233);
+  padding: 5px 5px 10px 20px;
+}
+
+.header_logo > img {
+  height: 45px;
+}
+
+.right {
+  position: absolute;
+  right: 15px;
+  padding: 15px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 298px;
+}
+
+.header_avatar > div > p {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+.header_avatar > div > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 15px;
+}
+
+.aside_close-icon {
+  position: absolute;
+  visibility: visible;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: whitesmoke;
+  margin-left: 5px;
+}

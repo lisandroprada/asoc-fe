@@ -1,0 +1,15 @@
+<!-- <div class="menu_icon" (click)="toggleSideBar()">
+  <span class="material-symbols-rounded"> menu </span>
+</div> -->
+<ul class="aside_list">
+  <li
+    class="aside_list-item"
+    *ngFor="let item of menuList"
+    (click)="toogleSideBar(item)"
+    [routerLink]="item.routerLink"
+    [ngClass]="item.text === (subMenuClick | titlecase) ? 'active' : ''"
+  >
+    <span class="material-symbols-rounded">{{ item.icon }}</span>
+    <p>{{ item.text }}</p>
+  </li>
+</ul>

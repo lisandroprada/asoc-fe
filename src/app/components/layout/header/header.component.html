@@ -1,0 +1,40 @@
+<div class="header_menu-icon" (click)="showMenu()">
+  <span class="material-symbols-rounded">menu</span>
+</div>
+<!-- <div class="header_menu-icon" (click)="toogleSideBar()">
+  <span class="material-symbols-rounded">menu</span>
+</div> -->
+
+<div class="search">
+  <input placeholder="Search..." />
+  <span class="search-icon">
+    <span class="material-icons">search</span>
+  </span>
+</div>
+<div class="header_logo center">
+  <img src="../../../../assets/img/logo/logo.png" alt="" />
+</div>
+<div class="header_avatar right" (click)="headerMenu()">
+  <div>
+    <p [ngClass]="smallScreen === true ? 'hide' : ''">Lisandro Prada</p>
+    <img src="../../../../assets/img/profile/user-1.jpeg" alt="" />
+  </div>
+
+  <div
+    class="dropdown-content"
+    [ngClass]="dropDown_visible === true ? 'dropDown_visible' : ''"
+  >
+    <!-- <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a> -->
+    <!-- <p>MENU</p> -->
+    <ul>
+      <li>Profile</li>
+      <li>Settings</li>
+    </ul>
+    <div class="divider"></div>
+    <ul>
+      <li>Sign out</li>
+    </ul>
+  </div>
+</div>
