@@ -5,6 +5,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
@@ -18,7 +20,11 @@ export class HeaderComponent implements OnInit {
   dropDown_visible: boolean = false;
   smallScreen: boolean = false;
 
-  constructor(private menuService: MenuService) {}
+  constructor(
+    private menuService: MenuService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -34,6 +40,8 @@ export class HeaderComponent implements OnInit {
     // this.checkCanShowSearchAsOverlay(window.innerWidth);
     // this.checkPhoneScreenSize(window.innerWidth);
   }
+
+  userProfile = this.authService.currentUser;
 
   ngOnInit(): void {}
 
@@ -52,5 +60,16 @@ export class HeaderComponent implements OnInit {
   headerMenu() {
     this.dropDown_visible = !this.dropDown_visible;
     console.log(this.dropDown_visible);
+  }
+
+  signOut() {
+    this.router.navigate(['/auth'], { replaceUrl: true });
+
+    this.authService.googleLogout();
+    // @ts-ignore
+    window.onGoogleLibraryLoad = () => {
+      // @ts-ignore
+      google.accounts.id.disableAutoSelect();
+    };
   }
 }

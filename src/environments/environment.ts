@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // api_URL: 'http://localhost:3000',
+  api_URL: 'https://api.realtor-test.tk',
+  app_URL: 'localhost:4200',
+  adminRoot: '/app',
 };
 
 /*
