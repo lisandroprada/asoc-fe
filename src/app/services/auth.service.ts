@@ -26,16 +26,14 @@ export class AuthService {
   googleLogin(token: string) {
     return this.http.post(`${api_URL}/users/login/google`, { token }).pipe(
       tap((res: any) => {
-        // console.log(res);
         localStorage.setItem('token', res.data.token);
-        // console.log('Token guardado', res.data.token);
       })
     );
   }
 
   validateToken(): Observable<boolean> {
     const token = localStorage.getItem('token') || '';
-    console.log('Token from validateToken', token);
+    // console.log('Token from validateToken', token);
     let params = new HttpParams();
     params = params.append('token', token);
 

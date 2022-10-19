@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
     };
   }
 
+  looggin() {}
+
   authenticationResponse() {
     console.log('called');
   }

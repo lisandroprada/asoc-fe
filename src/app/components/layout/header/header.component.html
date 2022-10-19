@@ -18,7 +18,7 @@
   <div>
     <p [ngClass]="smallScreen === true ? 'hide' : ''">{{ userProfile.name }}</p>
     <!-- <img src="../../../../assets/img/profile/user-1.jpeg" alt="" /> -->
-    <img [src]="userProfile.photo" alt="" />
+    <img [src]="userProfile.photo" alt="" referrerpolicy="no-referrer" />
   </div>
 
   <div
@@ -26,12 +26,12 @@
     [ngClass]="dropDown_visible === true ? 'dropDown_visible' : ''"
   >
     <ul>
-      <li>Profile</li>
-      <li>Settings</li>
+      <li>Perfil</li>
+      <li routerLink="/app/settings">Configuración</li>
     </ul>
     <div class="divider"></div>
     <ul>
-      <li (click)="signOut()">Sign out</li>
+      <li (click)="signOut()">Salir</li>
     </ul>
   </div>
 </div>

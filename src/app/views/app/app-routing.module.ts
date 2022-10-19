@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BlankPageComponent } from './blank-page/blank-page.component';
+import { CustomersComponent } from './customers/customers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
       {
         path: 'blank',
         component: BlankPageComponent,
+      },
+      {
+        path: 'customers',
+        component: CustomersComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
       },
     ],
   },

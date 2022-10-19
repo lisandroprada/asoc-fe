@@ -27,7 +27,7 @@ export class SidenavComponent implements OnInit {
     //   this.showMenu = status;
     // });
 
-    console.log(this.asideStatus);
+    // console.log(this.asideStatus);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {

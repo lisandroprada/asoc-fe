@@ -1,3 +1,8 @@
-<p>blank-page works!</p>
+<!-- <app-page-header [menuItems]="menuItems" [menuVisible]="true"></app-page-header> -->
 
-<app-inputs></app-inputs>
+<form [formGroup]="forma" (change)="formChanged()">
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput value="Google" formControlName="name" />
+  </mat-form-field>
+</form>

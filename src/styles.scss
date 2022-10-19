@@ -1,3 +1,57 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-admin-scss-primary: mat.define-palette(mat.$indigo-palette);
+$angular-admin-scss-accent: mat.define-palette(
+  mat.$pink-palette,
+  A200,
+  A100,
+  A400
+);
+
+// The warn palette is optional (defaults to red).
+$angular-admin-scss-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$angular-admin-scss-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-admin-scss-primary,
+      accent: $angular-admin-scss-accent,
+      warn: $angular-admin-scss-warn,
+    ),
+  )
+);
+
+$custom-typography: mat.define-typography-config(
+  $font-family: '"Poppins",ital',
+);
+
+$custom-theme: mat.define-light-theme(
+  (
+    typography: $custom-typography,
+  )
+);
+
+@include mat.core($custom-typography);
+@include mat.all-component-themes($custom-theme);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($angular-admin-scss-theme);
+
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 
@@ -13,6 +67,9 @@
 $primary-color: #145388;
 $secondary-color: #3a3a3a;
 $background-color: #fff;
+$blue-navy: #00365a;
+$blue-yale: #145388;
+$blue-olympic: #008ecc;
 
 html {
   width: 100%;
@@ -94,7 +151,7 @@ body {
 .main {
   grid-area: main;
   background-color: white;
-  padding: 15px 15px 15px 15px;
+  padding: 5px 30px 15px 30px;
 }
 
 // Scroll bar
@@ -264,13 +321,12 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  /* background-color: seagreen; */
   height: 100px;
-  // border: 1px solid darkblue;
   border-radius: 4px;
   color: darkblue;
   box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
 }
+
 /* Layout for main-cards section // below main_overview */
 .main_cards {
   margin: 10px;
@@ -500,4 +556,140 @@ body {
   grid-area: footer;
   background-color: whitesmoke;
   margin-left: 5px;
+}
+
+// Page Header
+.page-header {
+  background: $background-color;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid;
+  border-color: #e9ecef;
+  margin-bottom: 10px;
+}
+.header-title {
+  display: inline;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.breadcrumb {
+  display: inline;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  font-size: 0.75rem;
+}
+
+.breadcrumb-menu {
+  display: inline;
+  float: right;
+}
+
+// CARDS
+.card-grid_container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.overview_card mat-icon {
+  font-size: 2.4rem;
+  height: 3rem;
+  width: 3rem;
+  background: $primary-color;
+  color: $background-color;
+  padding: 5px;
+  border-radius: 30%;
+  opacity: 90%;
+}
+
+.overview-card-value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.blue-navy {
+  color: $blue-navy !important;
+}
+
+.blue-olympic {
+  color: $blue-olympic !important;
+}
+
+.blue-yale {
+  color: $blue-yale !important;
+}
+
+.background-blue-navy {
+  background: $blue-navy !important;
+}
+
+.background-blue-olympic {
+  background: $blue-olympic !important;
+}
+
+.background-blue-yale {
+  background: $blue-yale !important;
+}
+@media (max-width: 1240px) {
+  .card-grid_container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media (max-width: 960px) {
+  .card-grid_container {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+}
+
+// FORMS
+.full-width {
+  width: 100%;
+}
+
+.grid-two_container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+
+@media (max-width: 550px) {
+  .grid-two_container {
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
+
+.grid-one_container {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+// MODAL
+.Cancel-btn {
+  margin-right: 0.5em;
+  margin-top: 1em;
+  height: 2.5em;
+  float: right;
+}
+.Delete-btn {
+  margin-left: 0.5em;
+  margin-top: 1em;
+  height: 2.5em;
+}
+
+// LOGIN
+
+.container {
+  display: grid;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+  .center {
+    text-align: center;
+  }
+  img {
+    width: 300px;
+  }
 }

@@ -20,55 +20,57 @@ const data: IMenu[] = [
     icon: 'dashboard',
     routerLink: 'dashboard',
   },
+  // {
+  //   text: 'Aplicaciones',
+  //   icon: 'storefront',
+  //   children: [
+  //     {
+  //       text: 'Analytics',
+  //       icon: 'analytics',
+  //       routerLink: '/app/market/analytics',
+  //     },
+  //     {
+  //       text: 'Inventory',
+  //       icon: 'inventory',
+  //       routerLink: '/app/market/inventory',
+  //     },
+  //   ],
+  // },
   {
-    text: 'Market',
-    icon: 'storefront',
-    children: [
-      {
-        text: 'Analytics',
-        icon: 'analytics',
-        routerLink: '/app/market/analytics',
-      },
-      {
-        text: 'Inventory',
-        icon: 'inventory',
-        routerLink: '/app/market/inventory',
-      },
-    ],
-  },
-  {
-    text: 'Accounts',
+    text: 'Asociados',
     icon: 'manage_accounts',
+    routerLink: '/app/customers',
   },
   // {
   //   text: 'Logistics',
   //   icon: 'local_shipping',
   // },
+  // {
+  //   text: 'Blank Page',
+  //   icon: 'check_box_outline_blank',
+  //   routerLink: 'blank',
+  // },
   {
-    text: 'Blank Page',
-    icon: 'check_box_outline_blank',
-    routerLink: 'blank',
-  },
-  {
-    text: 'Settings',
+    text: 'Configuración',
     icon: 'settings',
+    routerLink: 'settings',
   },
-  {
-    text: 'Sub Menu',
-    icon: 'list',
-    children: [
-      {
-        text: 'Content',
-        icon: 'list',
-        routerLink: '/app/submenu',
-      },
-      {
-        text: 'Productos',
-        icon: 'all_inbox',
-        routerLink: '/app/submenu/analytics',
-      },
-    ],
-  },
+  // {
+  //   text: 'Sub Menu',
+  //   icon: 'list',
+  //   children: [
+  //     {
+  //       text: 'Content',
+  //       icon: 'list',
+  //       routerLink: '/app/submenu',
+  //     },
+  //     {
+  //       text: 'Productos',
+  //       icon: 'all_inbox',
+  //       routerLink: '/app/submenu/analytics',
+  //     },
+  //   ],
+  // },
   // {
   //   text: 'Sucursales',
   //   icon: 'supervised_user_circle',

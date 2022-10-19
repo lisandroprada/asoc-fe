@@ -25,8 +25,8 @@ export class AuthGuard implements CanActivate {
     return this.authService.validateToken().pipe(
       tap((res) => {
         //console.log('User Role', this.authService.currentUser.role);
-        console.log(res);
-        console.log(res);
+        // console.log(res);
+        // console.log(res);
         if (!res) {
           this.router.navigateByUrl('/auth/login');
         }

@@ -1,0 +1,23 @@
+<div class="page-header">
+  <div class="header-title">Dasboard</div>
+  <div class="breadcrumb">Inicio | Dashboard</div>
+  <div class="breadcrumb-menu" *ngIf="menuVisible">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button
+        mat-menu-item
+        *ngFor="let item of menuItems"
+        (click)="onAddNewItem()"
+      >
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.name }}</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

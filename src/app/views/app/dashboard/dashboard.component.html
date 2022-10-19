@@ -1,23 +1,31 @@
-<div class="main_overview">
-  <div class="overview_card">
-    <div class="overview_card-info">Overview</div>
-    <div class="overview_card-icon">Card</div>
-  </div>
-  <div class="overview_card">
-    <div class="overview_card-info">Overview</div>
-    <div class="overview_card-icon">Card</div>
-  </div>
-  <div class="overview_card">
-    <div class="overview_card-info">Overview</div>
-    <div class="overview_card-icon">Card</div>
-  </div>
-  <div class="overview_card">
-    <div class="overview_card-info">Overview</div>
-    <div class="overview_card-icon">Card</div>
-  </div>
+<app-page-header></app-page-header>
+<div class="card-grid_container">
+  <app-card-resumen
+    [title]="'Asociados'"
+    [value]="data?.total"
+    [icon]="'groups'"
+  ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Activos'"
+    [value]="data?.activos"
+    [icon]="'person'"
+    [color]="'blue-yale'"
+  ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Retirados'"
+    [value]="data?.retirados"
+    [icon]="'person'"
+    [color]="'blue-olympic'"
+  ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Por retirar'"
+    [value]="data?.porRetirar"
+    [icon]="'person'"
+    [color]="'blue-navy'"
+  ></app-card-resumen>
 </div>
 <div class="main_cards">
+  <div class="card"><app-birthdays></app-birthdays></div>
   <div class="card">Card</div>
   <div class="card">Card</div>
-  <!-- <div class="card">Card</div> -->
 </div>

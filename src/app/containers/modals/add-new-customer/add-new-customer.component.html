@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Alta de asociado</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="forma" (change)="formChanged()">
+    <div class="grid-two_container">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>CI</mat-label>
+        <input matInput formControlName="ci" />
+      </mat-form-field>
+    </div>
+    <div class="grid-two_container">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Elija una categoría</mat-label>
+        <mat-select formControlName="status">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let item of status" [value]="item.value">
+            {{ item.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="grid-two_container">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Ciudad</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Departamento</mat-label>
+        <input matInput formControlName="state" />
+      </mat-form-field>
+    </div>
+    <div class="grid-one_containeer">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+  </form>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="openDialog('300ms', '300ms')">Cancelar</button>
+    <button mat-button (click)="submit()">Enviar</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
