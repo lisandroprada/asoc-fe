@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { CustomerData } from '../interfaces/ICustomer';
 
-const apiURL = 'http://localhost:3005';
+const apiURL = environment.api_URL;
 
 @Injectable({
   providedIn: 'root',
