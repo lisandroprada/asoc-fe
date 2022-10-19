@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // api_URL: 'http://localhost:3000',
-  api_URL: 'https://api.realtor-test.tk',
+  api_URL: 'http://localhost:3005',
+  // api_URL: 'https://api.realtor-test.tk',
   app_URL: 'localhost:4200',
   adminRoot: '/app',
 };
