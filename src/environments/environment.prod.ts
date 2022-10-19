@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  api_URL: 'https://api.realtor-test.tk',
+  api_URL: 'http://be-asoc.tk/',
   app_URL: 'localhost:4200',
   // api_URL: 'http://localhost:3002',
   // app_URL: 'https://luomo.tk',
