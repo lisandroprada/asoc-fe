@@ -33,7 +33,7 @@ export class AuthService {
 
   validateToken(): Observable<boolean> {
     const token = localStorage.getItem('token') || '';
-    // console.log('Token from validateToken', token);
+    console.log('Token from validateToken', token);
     let params = new HttpParams();
     params = params.append('token', token);
 
