@@ -26,20 +26,17 @@ export class SidenavComponent implements OnInit {
       this.menuService.menuState = true;
     });
 
-    // console.log(this.asideStatus);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         const url = event.url.split('/')[2];
         this.url = url;
-        console.log(url);
         return true;
       });
   }
   toogleSideBar(item: any) {
-    // this.menuService.setMenuStatus(true);
     this.toogleSideBarAction.emit(item);
     this.subMenuClick = item.text;
-    // console.log(item);
+    this.menuService.setHeaderData(item);
   }
 }

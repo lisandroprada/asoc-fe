@@ -28,19 +28,11 @@ export class AppComponent implements AfterViewInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         const url = event.url.split('/')[2];
-        // console.log(event.url);
         return true;
       });
   }
 
   toggleSideBar(menuItems: any) {
-    // console.log(
-    //   this.subMenuItems,
-    //   menuItems,
-    //   this.collapsed,
-    //   this.menuService.menuState
-    // );
-
     this.subMenuItems = menuItems;
 
     // if (
@@ -51,20 +43,17 @@ export class AppComponent implements AfterViewInit {
     //   this.collapsed = true;
     //   return;
     // }
-    // console.log(this.subMenuItems === menuItems);
     // if (this.subMenuItems === menuItems && this.collapsed === true) {
     //   this.collapsed = false;
     //   return;
     // }
 
     if (!menuItems.children && this.collapsed === true) {
-      // console.log('1');
       this.collapsed = false;
       return;
     }
 
     if (menuItems.children && this.collapsed === true) {
-      // console.log('2');
       this.subMenuItems = menuItems;
       return;
     }
@@ -82,7 +71,6 @@ export class AppComponent implements AfterViewInit {
 
   setClass(item: any) {
     this.itemActive = item.split('/')[2];
-    // console.log(this.itemActive);
     this.collapsed = false;
     this.menuService.setMenuStatus(false);
     this.menuService.menuState = true;

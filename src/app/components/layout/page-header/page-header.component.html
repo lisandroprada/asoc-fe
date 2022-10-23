@@ -1,6 +1,6 @@
 <div class="page-header">
-  <div class="header-title">Dasboard</div>
-  <div class="breadcrumb">Inicio | Dashboard</div>
+  <div class="header-title">{{ breadcrumb.text }}</div>
+  <div class="breadcrumb">Inicio | {{ breadcrumb.text }}</div>
   <div class="breadcrumb-menu" *ngIf="menuVisible">
     <button
       mat-icon-button

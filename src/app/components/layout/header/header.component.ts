@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    console.log(window.innerWidth);
     if (window.innerWidth <= 750) {
       this.menuService.setMenuStatus(false);
       this.menuService.menuState = true;
@@ -36,9 +35,6 @@ export class HeaderComponent implements OnInit {
     } else {
       this.smallScreen = false;
     }
-
-    // this.checkCanShowSearchAsOverlay(window.innerWidth);
-    // this.checkPhoneScreenSize(window.innerWidth);
   }
 
   userProfile = this.authService.currentUser;
@@ -56,7 +52,6 @@ export class HeaderComponent implements OnInit {
   showMenu() {
     if (window.innerWidth >= 750) {
       this.menuService.setMenuStatus(true);
-      console.log(this.menuService.menuState);
       return;
     }
 
@@ -64,14 +59,11 @@ export class HeaderComponent implements OnInit {
     console.log('showMenu', menuStatus, !menuStatus);
 
     this.menuService.setMenuStatus(menuStatus);
-    // this.menuService.setMenuStatus(!menuStatus);
-    // menuStatus = !menuStatus;
     this.menuService.menuState = !menuStatus;
   }
 
   headerMenu() {
     this.dropDown_visible = !this.dropDown_visible;
-    console.log(this.dropDown_visible);
   }
 
   signOut() {

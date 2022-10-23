@@ -5,16 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class MenuService {
-  constructor() {
-    console.log(window.innerWidth, window.innerHeight);
-  }
+  constructor() {}
 
   @HostListener('window:resize', ['$event'])
-
-  // onResize(event: any) {
-  //   console.log(window.innerWidth);
-  // }
   public menuState: boolean = true;
+  public headerData: any;
 
   private menuStatus = new BehaviorSubject<any>({
     state: true,
@@ -27,5 +22,9 @@ export class MenuService {
 
   getNewMenuStatus() {
     return this.menuStatus.asObservable();
+  }
+
+  setHeaderData(data: any) {
+    this.headerData = data;
   }
 }

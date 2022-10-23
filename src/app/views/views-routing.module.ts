@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { AuthGuard } from '../guards/auth.guard';
+const adminRoot = environment.adminRoot;
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'app',
+    redirectTo: adminRoot,
     pathMatch: 'full',
   },
   {

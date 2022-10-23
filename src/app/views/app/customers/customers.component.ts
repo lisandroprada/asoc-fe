@@ -92,7 +92,6 @@ export class CustomersComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          // console.log(this.sort.active, this.sort.direction);
           return this.customerService!.getCustomers(
             this.sort.active,
             this.sort.direction,
@@ -102,7 +101,6 @@ export class CustomersComponent implements AfterViewInit {
           ).pipe(catchError(() => observableOf(null)));
         }),
         map((data: any) => {
-          console.log(data);
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = data === null;
@@ -116,12 +114,10 @@ export class CustomersComponent implements AfterViewInit {
         })
       )
       .subscribe((data) => {
-        console.log(data);
         this.data = data;
       });
   }
   applyFilter(event: any) {
-    console.log(event);
     this.search = event;
     this.renderTable();
   }

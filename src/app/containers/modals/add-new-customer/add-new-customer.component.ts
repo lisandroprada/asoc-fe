@@ -81,7 +81,6 @@ export class AddNewCustomerComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.forma.value);
     if (this.forma.invalid) {
       this.openSnackBar('Debe completar todos los campos requeridos', 'Volver');
       return;
@@ -89,7 +88,6 @@ export class AddNewCustomerComponent implements OnInit {
     this.customerService
       .createCustomer(this.forma.value)
       .subscribe((response: any) => {
-        console.log(response);
         this.commonService.callComponentMethod();
       });
     this.dialog.closeAll();
@@ -104,7 +102,6 @@ export class AddNewCustomerComponent implements OnInit {
     exitAnimationDuration: string,
     component: any
   ): void {
-    // console.log(this.wasFormChanged);
     if (this.forma.dirty) {
       const dialogRef = this.dialog.open(component, {
         width: '340px',
@@ -133,6 +130,5 @@ export class AddNewCustomerComponent implements OnInit {
           this.loadForm(response.data.data[0]);
         }
       });
-    console.log(event.target.value);
   }
 }
