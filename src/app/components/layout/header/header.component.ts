@@ -43,18 +43,30 @@ export class HeaderComponent implements OnInit {
 
   userProfile = this.authService.currentUser;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (window.innerWidth < 750) {
+      this.menuService.setMenuStatus(false);
+    }
+  }
 
   toogleSideBar() {
     this.toogleSideBarAction.emit('header');
   }
 
   showMenu() {
+    if (window.innerWidth >= 750) {
+      this.menuService.setMenuStatus(true);
+      console.log(this.menuService.menuState);
+      return;
+    }
+
     var menuStatus: boolean = this.menuService.menuState;
+    console.log('showMenu', menuStatus, !menuStatus);
 
     this.menuService.setMenuStatus(menuStatus);
-    menuStatus = !menuStatus;
-    this.menuService.menuState = menuStatus;
+    // this.menuService.setMenuStatus(!menuStatus);
+    // menuStatus = !menuStatus;
+    this.menuService.menuState = !menuStatus;
   }
 
   headerMenu() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MenuService } from 'src/app/services/menu.service';
@@ -8,7 +8,7 @@ import { MenuService } from 'src/app/services/menu.service';
   templateUrl: './app.component.html',
   styles: [],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   collapsed: boolean = false;
   itemActive: string = 'dashboard';
   showMenu: boolean = true;
@@ -16,12 +16,14 @@ export class AppComponent implements OnInit {
   subMenuItems: any;
 
   constructor(private router: Router, private menuService: MenuService) {}
+  @HostListener('window:resize', ['$event'])
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.menuService.getNewMenuStatus().subscribe((status) => {
+        this.showMenu = status;
+      });
+    }, 0);
 
-  ngOnInit(): void {
-    this.menuService.getNewMenuStatus().subscribe((status) => {
-      // console.log(status);
-      this.showMenu = status;
-    });
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -83,5 +85,6 @@ export class AppComponent implements OnInit {
     // console.log(this.itemActive);
     this.collapsed = false;
     this.menuService.setMenuStatus(false);
+    this.menuService.menuState = true;
   }
 }

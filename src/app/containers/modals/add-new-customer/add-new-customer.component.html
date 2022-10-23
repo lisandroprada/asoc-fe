@@ -9,7 +9,7 @@
 
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>CI</mat-label>
-        <input matInput formControlName="ci" />
+        <input matInput formControlName="ci" (blur)="checkCI($event)" />
       </mat-form-field>
     </div>
     <div class="grid-two_container">
@@ -37,15 +37,23 @@
         <input matInput formControlName="state" />
       </mat-form-field>
     </div>
-    <div class="grid-one_containeer">
+    <div class="grid-two_container">
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>E-mail</mat-label>
         <input matInput formControlName="email" />
       </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateOfBird" />
+        <!-- <mat-hint>MM/DD/AAAA</mat-hint> -->
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
   </form>
   <mat-dialog-actions align="end">
-    <button mat-button (click)="openDialog('300ms', '300ms')">Cancelar</button>
+    <button mat-button (click)="cancel()">Cancelar</button>
     <button mat-button (click)="submit()">Enviar</button>
   </mat-dialog-actions>
 </mat-dialog-content>

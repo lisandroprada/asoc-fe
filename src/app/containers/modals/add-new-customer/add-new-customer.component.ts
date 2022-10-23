@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 import { Status } from 'src/app/interfaces/IStatus';
 import { CommonService } from 'src/app/services/common.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { SureComponent } from '../sure/sure.component';
+import { ExistsTrueComponent } from '../exists-true/exists-true.component';
 
 @Component({
   selector: 'app-add-new-customer',
@@ -18,11 +24,15 @@ import { SureComponent } from '../sure/sure.component';
   ],
 })
 export class AddNewCustomerComponent implements OnInit {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
     private customerService: CustomerService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private _snackBar: MatSnackBar
   ) {
     this.createForm();
   }
@@ -47,6 +57,20 @@ export class AddNewCustomerComponent implements OnInit {
       phone: ['', Validators.required],
       status: ['', Validators.required],
       email: ['', Validators.email],
+      dateOfBird: ['', Validators.required],
+    });
+  }
+
+  loadForm(data: any) {
+    this.forma.reset({
+      name: data.name,
+      ci: data.ci,
+      city: data.city,
+      state: data.state,
+      phone: data.phone,
+      status: data.status,
+      email: data.email,
+      dateOfBird: data.dateOfBird,
     });
   }
 
@@ -58,6 +82,10 @@ export class AddNewCustomerComponent implements OnInit {
 
   submit() {
     console.log(this.forma.value);
+    if (this.forma.invalid) {
+      this.openSnackBar('Debe completar todos los campos requeridos', 'Volver');
+      return;
+    }
     this.customerService
       .createCustomer(this.forma.value)
       .subscribe((response: any) => {
@@ -67,13 +95,18 @@ export class AddNewCustomerComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  cancel() {
+    this.openDialog('300ms', '300ms', SureComponent);
+  }
+
   openDialog(
     enterAnimationDuration: string,
-    exitAnimationDuration: string
+    exitAnimationDuration: string,
+    component: any
   ): void {
-    console.log(this.wasFormChanged);
+    // console.log(this.wasFormChanged);
     if (this.forma.dirty) {
-      const dialogRef = this.dialog.open(SureComponent, {
+      const dialogRef = this.dialog.open(component, {
         width: '340px',
         enterAnimationDuration,
         exitAnimationDuration,
@@ -81,5 +114,25 @@ export class AddNewCustomerComponent implements OnInit {
     } else {
       this.dialog.closeAll();
     }
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this._snackBar.open(message, action, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 2000,
+    });
+  }
+
+  checkCI(event: any) {
+    this.customerService
+      .getCustomers('', '', 0, 10, event.target.value)
+      .subscribe((response: any) => {
+        if (response.results === 1) {
+          this.openDialog('300ms', '300ms', ExistsTrueComponent);
+          this.loadForm(response.data.data[0]);
+        }
+      });
+    console.log(event.target.value);
   }
 }

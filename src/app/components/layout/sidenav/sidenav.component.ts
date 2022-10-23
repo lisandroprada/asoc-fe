@@ -22,10 +22,9 @@ export class SidenavComponent implements OnInit {
   constructor(private router: Router, private menuService: MenuService) {}
 
   ngOnInit(): void {
-    // this.menuService.getNewMenuStatus().subscribe((status) => {
-    //   console.log(status);
-    //   this.showMenu = status;
-    // });
+    this.menuService.getNewMenuStatus().subscribe((status) => {
+      this.menuService.menuState = true;
+    });
 
     // console.log(this.asideStatus);
     this.router.events
@@ -38,8 +37,9 @@ export class SidenavComponent implements OnInit {
       });
   }
   toogleSideBar(item: any) {
+    // this.menuService.setMenuStatus(true);
     this.toogleSideBarAction.emit(item);
     this.subMenuClick = item.text;
-    console.log(item);
+    // console.log(item);
   }
 }

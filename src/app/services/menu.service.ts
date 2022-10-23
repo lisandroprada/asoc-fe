@@ -1,13 +1,20 @@
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
-  constructor() {}
+  constructor() {
+    console.log(window.innerWidth, window.innerHeight);
+  }
 
-  public menuState: boolean = false;
+  @HostListener('window:resize', ['$event'])
+
+  // onResize(event: any) {
+  //   console.log(window.innerWidth);
+  // }
+  public menuState: boolean = true;
 
   private menuStatus = new BehaviorSubject<any>({
     state: true,

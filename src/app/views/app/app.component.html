@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container" [ngClass]="showMenu ? 'grid-container_show' : ''">
   <!-- <div class="menu-icon" (click)="toggleAside()">
     <strong> &#9776;</strong>
   </div> -->
@@ -9,7 +9,7 @@
   <div class="scroll">
     <app-sidenav
       class="aside"
-      [ngClass]="showMenu === true ? 'show' : ''"
+      [ngClass]="showMenu ? 'show' : ''"
       [subMenuClick]="itemActive"
       (toogleSideBarAction)="toggleSideBar($event)"
     ></app-sidenav>

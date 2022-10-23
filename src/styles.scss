@@ -124,15 +124,19 @@ body {
 }
 
 .grid-container {
+  overflow: auto;
   display: grid;
   grid-template-columns: 0px 1fr;
   grid-template-rows: 80px 1fr 50px;
-
   grid-template-areas:
     "header header"
     "aside main"
     "aside footer";
   height: 100vh;
+}
+
+.grid-container_show {
+  grid-template-columns: 100px 1fr;
 }
 
 .header {
@@ -198,6 +202,7 @@ body {
 .aside_list {
   padding: 0;
   // margin-top: 15px;
+
   list-style-type: none;
   z-index: 3;
 }
@@ -369,6 +374,14 @@ body {
       "aside footer";
     height: 100vh;
   }
+
+  // .menu_hide {
+  //   grid-template-columns: 0px 1fr;
+  //   grid-template-areas:
+  //     "header header"
+  //     "aside main"
+  //     "aside footer";
+  // }
 
   .aside {
     grid-area: aside;
@@ -590,6 +603,43 @@ body {
   grid-template-columns: auto auto auto auto;
 }
 
+.overview_card {
+  flex-basis: 200px;
+  flex-grow: 1;
+  margin: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 100px;
+  border-radius: 4px;
+  color: darkblue;
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+}
+
+@media (max-width: 414px) {
+  .overview_card {
+    flex-direction: column;
+    padding: 5px;
+  }
+  .overview-card-value {
+    font-size: 1.5rem;
+  }
+
+  .overview_card mat-icon {
+    display: none;
+  }
+
+  .grid-one_container {
+    font-size: 0.75rem;
+    width: 100%;
+    overflow: auto;
+  }
+  // table tr td {
+  //   font-size: 0.75rem;
+  // }
+}
+
 .overview_card mat-icon {
   font-size: 2.4rem;
   height: 3rem;
@@ -639,7 +689,7 @@ body {
 @media (max-width: 960px) {
   .card-grid_container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
   }
 }
 
@@ -650,18 +700,27 @@ body {
 
 .grid-two_container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   gap: 10px;
 }
 
 @media (max-width: 550px) {
   .grid-two_container {
+    // overflow: hidden;
     display: grid;
     grid-template-columns: auto;
+  }
+  // .main-container {
+  //   overflow: auto;
+  // }
+  .mat-cell,
+  .mat-footer-cell {
+    font-size: 10px !important;
   }
 }
 
 .grid-one_container {
+  // overflow: hidden;
   display: grid;
   grid-template-columns: auto;
 }
@@ -680,6 +739,9 @@ body {
 }
 
 // TABLES
+.mat-elevation-z8 {
+  overflow: auto;
+}
 
 // LOGIN
 
@@ -694,4 +756,13 @@ body {
   img {
     width: 300px;
   }
+
+  //Responsive
+}
+
+// Prevent select
+span {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }

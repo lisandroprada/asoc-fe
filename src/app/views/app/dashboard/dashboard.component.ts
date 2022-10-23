@@ -10,7 +10,6 @@ export class DashboardComponent implements OnInit {
   data: any;
   constructor(private customerService: CustomerService) {
     this.customerService.getStatistics().subscribe((res: any) => {
-      console.log(res);
       this.data = res;
     });
   }

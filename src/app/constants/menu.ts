@@ -39,7 +39,7 @@ const data: IMenu[] = [
   {
     text: 'Asociados',
     icon: 'manage_accounts',
-    routerLink: '/app/customers',
+    routerLink: 'customers',
   },
   // {
   //   text: 'Logistics',

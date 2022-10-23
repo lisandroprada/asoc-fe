@@ -12,6 +12,7 @@ import { CustomerService } from 'src/app/services/customer.service';
     `
       table {
         width: 100%;
+        overflow-x: auto;
       }
 
       .mat-form-field {
