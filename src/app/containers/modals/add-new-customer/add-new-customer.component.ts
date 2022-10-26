@@ -58,6 +58,7 @@ export class AddNewCustomerComponent implements OnInit {
       status: ['', Validators.required],
       email: ['', Validators.email],
       dateOfBird: ['', Validators.required],
+      since: ['', Validators.required],
     });
   }
 
@@ -71,6 +72,7 @@ export class AddNewCustomerComponent implements OnInit {
       status: data.status,
       email: data.email,
       dateOfBird: data.dateOfBird,
+      since: data.since,
     });
   }
 
