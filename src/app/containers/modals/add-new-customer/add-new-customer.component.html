@@ -47,10 +47,17 @@
 
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dateOfBird" />
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          formControlName="dateOfBird"
+        />
         <!-- <mat-hint>MM/DD/AAAA</mat-hint> -->
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="grid-one_container">
