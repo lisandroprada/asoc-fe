@@ -28,6 +28,14 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>#CI</th>
       <td mat-cell *matCellDef="let row">{{ row.ci }}</td>
     </ng-container>
+    <ng-container matColumnDef="credencial">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Credencial</th>
+      <td mat-cell *matCellDef="let row">{{ row.credencial }}</td>
+    </ng-container>
+    <ng-container matColumnDef="codPolicial">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>#Cod. Policial</th>
+      <td mat-cell *matCellDef="let row">{{ row.codPolicial }}</td>
+    </ng-container>
     <ng-container matColumnDef="dateOfBird">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         Fecha de nacimiento

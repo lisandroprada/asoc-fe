@@ -42,7 +42,6 @@ export class AddNewCustomerComponent implements OnInit {
   status: Status[] = [
     { value: 'Activo', viewValue: 'Activo' },
     { value: 'Retirado', viewValue: 'Retirado' },
-    { value: 'Por retirar', viewValue: 'Por retirar' },
   ];
 
   createForm() {
@@ -52,6 +51,8 @@ export class AddNewCustomerComponent implements OnInit {
         [Validators.required, Validators.pattern('[a-zA-Z]+([a-zA-Z ]+)*')],
       ],
       ci: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      credencial: [],
+      codPolicial: [],
       city: [],
       state: [],
       phone: ['', Validators.required],
@@ -66,6 +67,8 @@ export class AddNewCustomerComponent implements OnInit {
     this.forma.reset({
       name: data.name,
       ci: data.ci,
+      credencial: data.credencial,
+      codPolicial: data.codPolicial,
       city: data.city,
       state: data.state,
       phone: data.phone,

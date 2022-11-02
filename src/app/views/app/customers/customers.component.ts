@@ -50,6 +50,8 @@ export class CustomersComponent implements AfterViewInit {
     'customer_ID',
     'name',
     'ci',
+    'credencial',
+    'codPolicial',
     'dateOfBird',
     'phone',
     'status',
