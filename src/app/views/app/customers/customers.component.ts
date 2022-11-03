@@ -11,6 +11,7 @@ import {
   map,
 } from 'rxjs';
 import { AddNewCustomerComponent } from 'src/app/containers/modals/add-new-customer/add-new-customer.component';
+import { ExportToExcelComponent } from 'src/app/containers/modals/export-to-excel/export-to-excel.component';
 import { CustomerData } from 'src/app/interfaces/ICustomer';
 import { MenuItem } from 'src/app/interfaces/IMenuItem';
 import { CommonService } from 'src/app/services/common.service';
@@ -35,7 +36,10 @@ import { CustomerService } from 'src/app/services/customer.service';
   ],
 })
 export class CustomersComponent implements AfterViewInit {
-  menuItems: MenuItem[] = [{ name: 'Agregar Asocioado', icon: 'person_add' }];
+  menuItems: MenuItem[] = [
+    { name: 'Agregar Asocioado', icon: 'person_add', action: 'addAssociate' },
+    { name: 'Exportar a Excel', icon: 'table_chart', action: 'exportToExcel' },
+  ];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -71,14 +75,26 @@ export class CustomersComponent implements AfterViewInit {
   }
 
   openDialog(
+    event: any,
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
-    this.dialog.open(AddNewCustomerComponent, {
-      width: '640px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
+    if (event.action === 'addAssociate') {
+      this.dialog.open(AddNewCustomerComponent, {
+        width: '640px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+      });
+    }
+
+    if (event.action === 'exportToExcel') {
+      this.dialog.open(ExportToExcelComponent, {
+        width: '640px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: this.data,
+      });
+    }
   }
 
   ngAfterViewInit(): void {

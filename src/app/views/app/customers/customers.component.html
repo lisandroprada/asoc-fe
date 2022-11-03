@@ -1,7 +1,7 @@
 <app-page-header
   [menuItems]="menuItems"
   [menuVisible]="true"
-  (addNewItem)="openDialog('300ms', '300ms')"
+  (menuSelected)="openDialog($event, '300ms', '300ms')"
 ></app-page-header>
 <mat-form-field appearance="standard">
   <mat-label>Filtro</mat-label>

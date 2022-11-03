@@ -13,7 +13,7 @@
       <button
         mat-menu-item
         *ngFor="let item of menuItems"
-        (click)="onAddNewItem()"
+        (click)="onSelect(item)"
       >
         <mat-icon>{{ item.icon }}</mat-icon>
         <span>{{ item.name }}</span>

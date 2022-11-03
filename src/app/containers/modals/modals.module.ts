@@ -7,10 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SuccessComponent } from './success/success.component';
 import { SureComponent } from './sure/sure.component';
 import { ExistsTrueComponent } from './exists-true/exists-true.component';
+import { ExportToExcelComponent } from './export-to-excel/export-to-excel.component';
 
 @NgModule({
-  declarations: [AddNewCustomerComponent, SuccessComponent, SureComponent, ExistsTrueComponent],
+  declarations: [AddNewCustomerComponent, SuccessComponent, SureComponent, ExistsTrueComponent, ExportToExcelComponent],
   imports: [CommonModule, MaterialModule, MatDialogModule, ReactiveFormsModule],
-  exports: [AddNewCustomerComponent, ExistsTrueComponent],
+  exports: [AddNewCustomerComponent, ExistsTrueComponent, ExportToExcelComponent],
 })
 export class ModalsModule {}

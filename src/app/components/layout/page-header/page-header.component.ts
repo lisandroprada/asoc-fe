@@ -11,7 +11,7 @@ export class PageHeaderComponent implements OnInit {
   @Input() menuItems: any;
   @Input() menuVisible: boolean = false;
 
-  @Output() addNewItem: EventEmitter<any> = new EventEmitter();
+  @Output() menuSelected: EventEmitter<any> = new EventEmitter();
 
   breadcrumb: any;
 
@@ -25,7 +25,7 @@ export class PageHeaderComponent implements OnInit {
     this.breadcrumb = this.menuService.headerData;
   }
 
-  onAddNewItem(): void {
-    this.addNewItem.emit(null);
+  onSelect(item: any) {
+    this.menuSelected.emit(item);
   }
 }
