@@ -27,7 +27,7 @@ export class BirthdaysComponent implements OnInit {
     'customer_ID',
     'name',
     'ci',
-    'dateOfBird',
+    'birthday',
     'phone',
     'status',
     'since',
@@ -39,7 +39,8 @@ export class BirthdaysComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(private customerService: CustomerService) {
     this.customerService.getStatistics().subscribe((data: any) => {
-      this.dataSource = new MatTableDataSource(data.birthdays);
+      console.log(data);
+      this.dataSource = new MatTableDataSource(data.actualBirthDays);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

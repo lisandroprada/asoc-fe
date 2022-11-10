@@ -15,6 +15,7 @@ import { CardsModule } from 'src/app/containers/cards/cards.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalsModule } from 'src/app/containers/modals/modals.module';
 import { TablesModule } from 'src/app/containers/tables/tables.module';
+import { PipesModuleModule } from 'src/app/pipes/pipes-module.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TablesModule } from 'src/app/containers/tables/tables.module';
     CardsModule,
     ModalsModule,
     TablesModule,
+    PipesModuleModule,
   ],
 })
 export class AppModule {}

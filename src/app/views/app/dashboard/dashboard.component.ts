@@ -25,5 +25,7 @@ export class DashboardComponent implements OnInit {
     console.log(lastDay); // 👉️ Mon Oct 31 2022 ...
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.customerService.getCustomers()
+  }
 }
