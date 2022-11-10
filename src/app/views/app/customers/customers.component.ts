@@ -89,7 +89,7 @@ export class CustomersComponent implements AfterViewInit {
 
     if (event.action === 'exportToExcel') {
       this.dialog.open(ExportToExcelComponent, {
-        width: '640px',
+        width: '400px',
         enterAnimationDuration,
         exitAnimationDuration,
         data: this.data,

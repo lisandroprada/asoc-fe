@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
       // console.log(res);
       this.ngZone.run(() => {
         setTimeout(() => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/app');
         }, 450);
       });
     });
