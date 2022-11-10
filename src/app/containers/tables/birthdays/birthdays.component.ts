@@ -24,13 +24,13 @@ import { CustomerService } from 'src/app/services/customer.service';
 })
 export class BirthdaysComponent implements OnInit {
   displayedColumns: string[] = [
-    'customer_ID',
+    // 'customer_ID',
     'name',
-    'ci',
+    // 'ci',
     'birthday',
     'phone',
     'status',
-    'since',
+    // 'since',
   ];
 
   dataSource: MatTableDataSource<CustomerData>;
