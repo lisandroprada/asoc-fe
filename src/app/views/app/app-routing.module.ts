@@ -22,6 +22,11 @@ const routes: Routes = [
           import('./market/market.module').then((m) => m.MarketModule),
       },
       {
+        path: 'balance',
+        loadChildren: () =>
+          import('./balance/balance.module').then((m) => m.BalanceModule),
+      },
+      {
         path: 'blank',
         component: BlankPageComponent,
       },

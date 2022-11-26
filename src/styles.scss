@@ -701,18 +701,31 @@ body {
 .grid-two_container {
   display: grid;
   grid-template-columns: 50% 50%;
-  gap: 10px;
+  gap: 1%;
+}
+.grid-three_container {
+  display: grid;
+  grid-template-columns: 33% 32% 33%;
+  gap: 1%;
+}
+
+.grid-three2_container {
+  display: grid;
+  grid-template-columns: 66% 33%;
+  gap: 1%;
 }
 
 @media (max-width: 550px) {
   .grid-two_container {
-    // overflow: hidden;
     display: grid;
     grid-template-columns: auto;
   }
-  // .main-container {
-  //   overflow: auto;
-  // }
+
+  .grid-three_container {
+    display: grid;
+    grid-template-columns: auto;
+  }
+
   .mat-cell,
   .mat-footer-cell {
     font-size: 10px !important;

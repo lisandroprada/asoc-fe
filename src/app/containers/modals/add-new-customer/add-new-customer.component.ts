@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -20,6 +20,9 @@ import { ExistsTrueComponent } from '../exists-true/exists-true.component';
       td {
         padding-left: 5px;
       }
+      .mat-dialog-content {
+        max-height: unset;
+      }
     `,
   ],
 })
@@ -32,10 +35,12 @@ export class AddNewCustomerComponent implements OnInit {
     private fb: FormBuilder,
     private customerService: CustomerService,
     private commonService: CommonService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.createForm();
   }
+
   forma: FormGroup;
   wasFormChanged: Boolean = false;
 
@@ -45,21 +50,27 @@ export class AddNewCustomerComponent implements OnInit {
   ];
 
   createForm() {
+    if (!this.data) {
+      this.data = {};
+    }
     this.forma = this.fb.group({
       name: [
-        '',
+        this.data.name,
         [Validators.required, Validators.pattern('[a-zA-Z]+([a-zA-Z ]+)*')],
       ],
-      ci: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      credencial: [],
-      codPolicial: [],
-      city: [],
-      state: [],
-      phone: ['', Validators.required],
-      status: ['', Validators.required],
-      email: ['', Validators.email],
-      dateOfBird: ['', Validators.required],
-      since: ['', Validators.required],
+      ci: [
+        this.data.ci,
+        [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+      ],
+      credencial: [this.data.credencial],
+      codPolicial: [this.data.codPolicial],
+      city: [this.data.city],
+      state: [this.data.state],
+      phone: [this.data.phone, Validators.required],
+      status: [this.data.status, Validators.required],
+      email: [this.data.email, Validators.email],
+      dateOfBird: [this.data.dateOfBird, Validators.required],
+      since: [this.data.since, Validators.required],
     });
   }
 
@@ -132,7 +143,8 @@ export class AddNewCustomerComponent implements OnInit {
       .subscribe((response: any) => {
         if (response.results === 1) {
           this.openDialog('300ms', '300ms', ExistsTrueComponent);
-          this.loadForm(response.data.data[0]);
+          this.data = response.data.data[0];
+          this.loadForm(this.data);
         }
       });
   }

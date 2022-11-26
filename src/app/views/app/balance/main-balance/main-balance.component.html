@@ -1,0 +1,36 @@
+<app-page-header
+  [menuItems]="menuItems"
+  [menuVisible]="true"
+  (menuSelected)="openDialog($event, '300ms', '300ms')"
+></app-page-header>
+
+<div class="card-grid_container">
+  <app-card-resumen
+    [title]="'Pagos'"
+    [value]="data.total"
+    [icon]="'query_stats'"
+  ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Saldos'"
+    [value]="data.activos"
+    [icon]="'account_balance'"
+    [color]="'blue-yale'"
+  ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Retirados'"
+    [value]="data.retirados"
+    [icon]="'person'"
+    [color]="'blue-olympic'"
+  ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Cumpleaños'"
+    [value]="data.birthdays"
+    [icon]="'cake'"
+    [color]="'blue-olympic'"
+  ></app-card-resumen>
+</div>
+
+<div class="grid-two_container">
+  <div class="overview_card">TABLA | PLAN DE CUOTAS</div>
+  <div class="overview_card">TABLA | CLIENTES CON DEUDA</div>
+</div>

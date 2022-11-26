@@ -41,6 +41,11 @@ const data: IMenu[] = [
     icon: 'manage_accounts',
     routerLink: 'customers',
   },
+  {
+    text: 'Cuentas',
+    icon: 'account_balance',
+    routerLink: 'balance',
+  },
   // {
   //   text: 'Logistics',
   //   icon: 'local_shipping',

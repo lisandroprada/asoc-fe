@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Cargar un pago</h1>
+<div mat-dialog-content>
+  <p>DESCRIPCIÓN: {{ data.description }}</p>
+  <p>SALDO: {{ data.balance | currency: "Gs":"symbol":"1.0-0" }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">
+    Enviar
+  </button>
+</div>

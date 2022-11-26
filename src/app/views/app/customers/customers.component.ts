@@ -11,6 +11,7 @@ import {
   map,
 } from 'rxjs';
 import { AddNewCustomerComponent } from 'src/app/containers/modals/add-new-customer/add-new-customer.component';
+import { CustomerBalanceComponent } from 'src/app/containers/modals/customer-balance/customer-balance.component';
 import { ExportToExcelComponent } from 'src/app/containers/modals/export-to-excel/export-to-excel.component';
 import { CustomerData } from 'src/app/interfaces/ICustomer';
 import { MenuItem } from 'src/app/interfaces/IMenuItem';
@@ -32,10 +33,17 @@ import { CustomerService } from 'src/app/services/customer.service';
       button {
         margin-right: 8px;
       }
+      .mat-dialog-content {
+        max-height: unset;
+      }
+      .mat-header-cell {
+        text-align: center;
+      }
     `,
   ],
 })
 export class CustomersComponent implements AfterViewInit {
+  timer: any;
   menuItems: MenuItem[] = [
     { name: 'Agregar Asocioado', icon: 'person_add', action: 'addAssociate' },
     { name: 'Exportar a Excel', icon: 'table_chart', action: 'exportToExcel' },
@@ -60,6 +68,7 @@ export class CustomersComponent implements AfterViewInit {
     'phone',
     'status',
     'since',
+    'actions',
   ];
 
   data: CustomerData[] = [];
@@ -77,13 +86,17 @@ export class CustomersComponent implements AfterViewInit {
   openDialog(
     event: any,
     enterAnimationDuration: string,
-    exitAnimationDuration: string
+    exitAnimationDuration: string,
+    data?: any
   ): void {
     if (event.action === 'addAssociate') {
       this.dialog.open(AddNewCustomerComponent, {
-        width: '640px',
+        // width: '640px',
+        // height: '600px',
+        maxHeight: '100vh',
         enterAnimationDuration,
         exitAnimationDuration,
+        data: data,
       });
     }
 
@@ -95,6 +108,25 @@ export class CustomersComponent implements AfterViewInit {
         data: this.data,
       });
     }
+    if (event.action === 'customerBalance') {
+      this.dialog.open(CustomerBalanceComponent, {
+        minWidth: '800px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: data,
+      });
+    }
+  }
+
+  editCustomer(item: any) {
+    console.log(item);
+    const event = { action: 'addAssociate' };
+    this.openDialog(event, '300ms', '300ms', item);
+  }
+
+  customerBalance(item: any) {
+    const event = { action: 'customerBalance' };
+    this.openDialog(event, '300ms', '300ms', item);
   }
 
   ngAfterViewInit(): void {
@@ -128,17 +160,29 @@ export class CustomersComponent implements AfterViewInit {
           }
 
           this.resultsLength = data.results;
-          return data.data.data;
+          return data.data;
         })
       )
       .subscribe((data) => {
+        // console.log(data);
         this.data = data;
       });
   }
   applyFilter(event: any) {
+    console.log(event);
     this.search = event;
+    this.paginator.pageIndex = 0;
+
     this.renderTable();
   }
 
-  pageChanged(action: any) {}
+  pageChanged(event: any) {
+    this.pageSize = event.pageSize;
+
+    // console.log(this.tela);
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.renderTable();
+    }, 700);
+  }
 }

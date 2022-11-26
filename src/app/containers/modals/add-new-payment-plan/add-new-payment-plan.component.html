@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Nuevo plan de cuotas</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="forma" (change)="formChanged()">
+    <div class="grid-three2_container">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Plan</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha de inicio</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="startDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="grid-three_container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Frecuencia</mat-label>
+        <mat-select formControlName="frequency" name="frequency">
+          <mat-option>Elija una opción</mat-option>
+          <mat-option
+            *ngFor="let item of frequencies"
+            [disabled]="item.disabled"
+            [value]="item.value"
+          >
+            {{ item.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Cantidad de períodos</mat-label>
+        <input
+          matInput
+          formControlName="periods"
+          type="number"
+          name="periods"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Monto</mat-label>
+        <input
+          matInput
+          formControlName="amount"
+          type="text"
+          name="amount"
+          [allowNegativeNumbers]="false"
+          mask="separator.0"
+          thousandSeparator="."
+          prefix=" ₲ "
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancelar</button>
+    <button mat-button (click)="submit()">Enviar</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
