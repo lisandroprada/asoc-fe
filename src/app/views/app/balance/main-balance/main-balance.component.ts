@@ -11,10 +11,25 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MainBalanceComponent implements OnInit {
   menuItems: MenuItem[] = [
-    { name: 'Pagos', icon: 'payments', action: 'payments' },
-    { name: 'Plan de Pagos', icon: 'account_tree', action: 'payments_plan' },
-    { name: 'Importar de Excel', icon: 'publish', action: 'importFromExcel' },
-    { name: 'Exportar a Excel', icon: 'download', action: 'exportToExcel' },
+    { name: 'Pagos', icon: 'payments', action: 'payments', disabled: true },
+    {
+      name: 'Plan de Pagos',
+      icon: 'account_tree',
+      action: 'payments_plan',
+      disabled: false,
+    },
+    {
+      name: 'Importar de Excel',
+      icon: 'publish',
+      action: 'importFromExcel',
+      disabled: true,
+    },
+    {
+      name: 'Exportar a Excel',
+      icon: 'download',
+      action: 'exportToExcel',
+      disabled: true,
+    },
   ];
 
   data = {

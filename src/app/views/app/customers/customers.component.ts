@@ -45,8 +45,18 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class CustomersComponent implements AfterViewInit {
   timer: any;
   menuItems: MenuItem[] = [
-    { name: 'Agregar Asocioado', icon: 'person_add', action: 'addAssociate' },
-    { name: 'Exportar a Excel', icon: 'table_chart', action: 'exportToExcel' },
+    {
+      name: 'Agregar Asocioado',
+      icon: 'person_add',
+      action: 'addAssociate',
+      disabled: false,
+    },
+    {
+      name: 'Exportar a Excel',
+      icon: 'table_chart',
+      action: 'exportToExcel',
+      disabled: false,
+    },
   ];
 
   resultsLength = 0;

@@ -31,7 +31,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Elija una categoría</mat-label>
         <mat-select formControlName="status">
-          <mat-option>None</mat-option>
+          <mat-option>Elija una opción</mat-option>
           <mat-option *ngFor="let item of status" [value]="item.value">
             {{ item.viewValue }}
           </mat-option>

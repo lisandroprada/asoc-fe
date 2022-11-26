@@ -3,6 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BalanceService } from 'src/app/services/balance.service';
 import { SureComponent } from '../sure/sure.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-new-payment-plan',
@@ -19,6 +24,9 @@ import { SureComponent } from '../sure/sure.component';
   ],
 })
 export class AddNewPaymentPlanComponent implements OnInit {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
   frequencies = [
     { value: 'day', viewValue: 'Diario', disabled: true },
     { value: 'month', viewValue: 'Mensual' },
@@ -33,7 +41,8 @@ export class AddNewPaymentPlanComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private balanceService: BalanceService
+    private balanceService: BalanceService,
+    private _snackBar: MatSnackBar
   ) {
     this.createForm();
   }
@@ -72,11 +81,25 @@ export class AddNewPaymentPlanComponent implements OnInit {
     this.balanceService
       .createPaymentPlan(this.forma.value)
       .subscribe((res: any) => {
-        console.log(res);
+        console.log('call snack', res);
+
+        this.openSnackBar(
+          `${this.forma.value['name']} creado con éxito!`,
+          'Volver'
+        );
+        this.dialog.closeAll();
       });
   }
 
   cancel() {
     this.openDialog('300ms', '300ms', SureComponent);
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this._snackBar.open(message, action, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 2000,
+    });
   }
 }

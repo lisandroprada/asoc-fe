@@ -14,6 +14,7 @@
         mat-menu-item
         *ngFor="let item of menuItems"
         (click)="onSelect(item)"
+        [disabled]="item.disabled"
       >
         <mat-icon>{{ item.icon }}</mat-icon>
         <span>{{ item.name }}</span>
