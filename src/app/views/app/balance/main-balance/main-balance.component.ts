@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MainBalanceComponent implements OnInit {
   menuItems: MenuItem[] = [
-    { name: 'Pagos', icon: 'payments', action: 'payments', disabled: true },
+    { name: 'Pagos', icon: 'payments', action: 'payments', disabled: false },
     {
       name: 'Plan de Pagos',
       icon: 'account_tree',

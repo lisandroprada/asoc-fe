@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BalanceService } from 'src/app/services/balance.service';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -12,22 +12,16 @@ export class AddNewPaymentComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private balanceService: BalanceService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    const forma = {
-      date: new Date(),
-      target: this.data.target,
-      amount: this.data.amount,
-      type: 'Recibo',
-      accountId: this.data._id,
-    };
-    this.balanceService.createReceipt(forma).subscribe((response: any) => {
+    this.balanceService.processBatch().subscribe((response) => {
       console.log(response);
-      this.commonService.callComponentMethod();
+      this.dialog.closeAll();
     });
   }
 }
