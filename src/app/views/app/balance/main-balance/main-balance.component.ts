@@ -1,3 +1,4 @@
+import { AddNewSpendingComponent } from './../../../../containers/modals/add-new-spending/add-new-spending.component';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'src/app/interfaces/IMenuItem';
 import { AddNewPaymentComponent } from 'src/app/containers/modals/add-new-payment/add-new-payment.component';
@@ -16,6 +17,12 @@ export class MainBalanceComponent implements OnInit {
       name: 'Plan de Pagos',
       icon: 'account_tree',
       action: 'payments_plan',
+      disabled: false,
+    },
+    {
+      name: 'Egreso',
+      icon: 'shopping_cart_checkout',
+      action: 'spendings',
       disabled: false,
     },
     {
@@ -61,6 +68,17 @@ export class MainBalanceComponent implements OnInit {
     }
     if (event.action === 'payments_plan') {
       this.dialog.open(AddNewPaymentPlanComponent, {
+        width: '640px',
+        // height: '600px',
+        maxHeight: '100vh',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: data,
+        disableClose: true,
+      });
+    }
+    if (event.action === 'spendings') {
+      this.dialog.open(AddNewSpendingComponent, {
         width: '640px',
         // height: '600px',
         maxHeight: '100vh',

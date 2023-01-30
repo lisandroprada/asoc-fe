@@ -12,7 +12,7 @@ import { catchError, map, merge, startWith, switchMap } from 'rxjs';
 import { MasterAccount } from 'src/app/interfaces/IMasterAccount';
 import { BalanceService } from 'src/app/services/balance.service';
 import { CommonService } from 'src/app/services/common.service';
-import { AddNewPaymentComponent } from '../add-new-payment/add-new-payment.component';
+import { AddNewPaymentCComponent } from '../add-new-payment-c/add-new-payment-c.component';
 
 export interface PeriodicElement {
   name: string;
@@ -76,8 +76,8 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
     exitAnimationDuration: string,
     data?: any
   ): void {
-    if (event.action === 'addNewPayment') {
-      this.dialog.open(AddNewPaymentComponent, {
+    if (event.action === 'addNewPaymentC') {
+      this.dialog.open(AddNewPaymentCComponent, {
         // width: '640px',
         // height: '600px',
         maxHeight: '100vh',
@@ -133,7 +133,7 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
 
   addPayment(item: any) {
     console.log(item);
-    const event = { action: 'addNewPayment' };
+    const event = { action: 'addNewPaymentC' };
     this.openDialog(event, '300ms', '300ms', item);
   }
 

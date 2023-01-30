@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Pago de la cuota seleccionada</h1>
+<div mat-dialog-content>
+  {{ data.description }}
+  <hr />
+
+  <form [formGroup]="forma" (change)="formChanged()">
+    <div class="grid-two_container">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Monto</mat-label>
+        <input
+          matInput
+          formControlName="amount"
+          type="text"
+          name="amount"
+          [allowNegativeNumbers]="false"
+          mask="separator.0"
+          thousandSeparator="."
+          prefix=" ₲ "
+        />
+        <mat-error *ngIf="forma.get('amount')!.hasError('max')">
+          El valor no puede superar: {{ data.balance }}
+        </mat-error>
+        <mat-error *ngIf="forma.get('amount')!.hasError('min')">
+          El valor no puede ser menos de 1.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha de Ingreso</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial (click)="onSubmit()">Enviar</button>
+</div>

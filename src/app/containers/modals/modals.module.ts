@@ -12,6 +12,8 @@ import { AddNewPaymentComponent } from './add-new-payment/add-new-payment.compon
 import { AddNewPaymentPlanComponent } from './add-new-payment-plan/add-new-payment-plan.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CustomerBalanceComponent } from './customer-balance/customer-balance.component';
+import { AddNewSpendingComponent } from './add-new-spending/add-new-spending.component';
+import { AddNewPaymentCComponent } from './add-new-payment-c/add-new-payment-c.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CustomerBalanceComponent } from './customer-balance/customer-balance.co
     AddNewPaymentComponent,
     AddNewPaymentPlanComponent,
     CustomerBalanceComponent,
+    AddNewSpendingComponent,
+    AddNewPaymentCComponent,
   ],
   imports: [
     CommonModule,
