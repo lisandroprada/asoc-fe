@@ -44,6 +44,11 @@ export class BirthdaysComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+    if (window.innerWidth <= 750) {
+      this.displayedColumns = this.columns;
+    } else {
+      this.displayedColumns = this.columnsExt;
+    }
   }
 
   @HostListener('window:resize', ['$event'])
