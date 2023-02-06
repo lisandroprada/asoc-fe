@@ -7,6 +7,7 @@ import { MainBalanceComponent } from './main-balance/main-balance.component';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
 import { MaterialModule } from 'src/app/components/material/material.module';
 import { CardsModule } from 'src/app/containers/cards/cards.module';
+import { TablesModule } from 'src/app/containers/tables/tables.module';
 
 @NgModule({
   declarations: [BalanceComponent, MainBalanceComponent],
@@ -16,6 +17,7 @@ import { CardsModule } from 'src/app/containers/cards/cards.module';
     LayoutModule,
     MaterialModule,
     CardsModule,
+    TablesModule,
   ],
 })
 export class BalanceModule {}

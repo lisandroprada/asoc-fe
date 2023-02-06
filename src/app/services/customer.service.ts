@@ -36,7 +36,10 @@ export class CustomerService {
     return this.http.post(url, forma);
   }
 
-  updateOne() {}
+  updateOne(id: string, forma: CustomerData) {
+    const url = `${apiURL}/customers/${id}`;
+    return this.http.patch(url, forma);
+  }
 
   deleteCustomer() {}
 

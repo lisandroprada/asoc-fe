@@ -15,6 +15,13 @@ export class BalanceService {
     return this.http.post(url, forma);
   }
 
+  getPaymentPlan() {
+    const url = apiURL + '/balance/';
+    let params = new HttpParams();
+    params = params.append('sort', 'startDate');
+    return this.http.get(url, { params });
+  }
+
   getMasterAccounts(
     sortActive: string,
     sortDirection: string,
@@ -39,6 +46,7 @@ export class BalanceService {
   // Create Receipt
   createReceipt(forma: any) {
     const url = apiURL + '/receipts/';
+
     return this.http.post(url, forma);
   }
 

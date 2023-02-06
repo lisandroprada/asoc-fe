@@ -101,11 +101,20 @@ export class AddNewCustomerComponent implements OnInit {
       this.openSnackBar('Debe completar todos los campos requeridos', 'Volver');
       return;
     }
-    this.customerService
-      .createCustomer(this.forma.value)
-      .subscribe((response: any) => {
-        this.commonService.callComponentMethod();
-      });
+    if (this.data._id) {
+      this.customerService
+        .updateOne(this.data._id, this.forma.value)
+        .subscribe((data) => {
+          this.commonService.callComponentMethod();
+        });
+    } else {
+      this.customerService
+        .createCustomer(this.forma.value)
+        .subscribe((response: any) => {
+          this.commonService.callComponentMethod();
+        });
+    }
+
     this.dialog.closeAll();
   }
 
