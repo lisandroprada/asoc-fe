@@ -15,6 +15,12 @@ export class BalanceService {
     return this.http.post(url, forma);
   }
 
+  createIndividualPPlan(forma: any, id: string) {
+    const url = apiURL + `/balance/setplan/${id}`;
+    console.log(url);
+    return this.http.post(url, forma);
+  }
+
   getPaymentPlan() {
     const url = apiURL + '/balance/';
     let params = new HttpParams();
@@ -48,6 +54,27 @@ export class BalanceService {
     const url = apiURL + '/receipts/';
 
     return this.http.post(url, forma);
+  }
+
+  getReceipt(
+    sortActive: string,
+    sortDirection: string,
+    page: number,
+    pageSize: number,
+    search: string,
+    customerId: string
+  ) {
+    let params = new HttpParams();
+    params = params.append('sort', sortActive);
+    params = params.append('limit', pageSize);
+    params = params.append('page', page);
+    params = params.append('customerId', customerId);
+    if (search) {
+      params = params.append('search', search);
+    }
+    // params = params.append('balance[gt]', 0);
+    const url = apiURL + '/receipts';
+    return this.http.get(url, { params });
   }
 
   processBatch() {

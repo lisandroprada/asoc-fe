@@ -47,7 +47,7 @@
         Fecha de nacimiento
       </th>
       <td mat-cell *matCellDef="let row">
-        {{ row.dateOfBird | date: "dd/MM/yy":"+0003" }}
+        {{ row.dateOfBird | date : "dd/MM/yy" : "+0003" }}
       </td>
     </ng-container>
     <ng-container matColumnDef="phone">
@@ -58,12 +58,19 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
       <td mat-cell *matCellDef="let row">{{ row.status }}</td>
     </ng-container>
+    <ng-container matColumnDef="paymentPlans">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-icon *ngIf="row.paymentPlans | pplan">check</mat-icon>
+        <!-- <mat-icon *ngIf="row.paymentplan | pplan">check_indeterminate_small</mat-icon> -->
+      </td>
+    </ng-container>
     <ng-container matColumnDef="since">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         Fecha de ingreso
       </th>
       <td mat-cell *matCellDef="let row">
-        {{ row.since | date: "dd/MM/yy":"+0003" }}
+        {{ row.since | date : "dd/MM/yy" : "+0003" }}
       </td>
     </ng-container>
     <ng-container matColumnDef="actions">
@@ -82,6 +89,20 @@
           (click)="customerBalance(row)"
         >
           <mat-icon> credit_card </mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="receiptList(row)"
+        >
+          <mat-icon> receipt </mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="setPaymentPlan(row)"
+        >
+          <mat-icon> account_balance </mat-icon>
         </button>
       </td>
     </ng-container>

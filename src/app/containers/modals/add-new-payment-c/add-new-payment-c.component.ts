@@ -39,6 +39,7 @@ export class AddNewPaymentCComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.createForm();
+    console.log('data', this.data);
   }
 
   ngOnInit(): void {}
@@ -68,6 +69,7 @@ export class AddNewPaymentCComponent implements OnInit {
     const formulario = {
       ...this.forma.value,
       _id: this.data._id,
+      customerId: this.data.target,
     };
 
     this.balanceService.createReceipt(formulario).subscribe((result) => {

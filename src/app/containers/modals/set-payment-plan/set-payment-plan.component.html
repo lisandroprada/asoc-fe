@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Asignar plan de pagos</h2>
+<mat-dialog-content class="mat-typography">
+  <br />
+
+  <div *ngIf="data.paymentPlans && data.paymentPlans.length > 0">
+    El asociado ya cuenta con los planes de pagos vinculados
+  </div>
+
+  <div *ngIf="!data.paymentPlans || data.paymentPlans.length === 0">
+    El asociado no tiene planes de pagos vinculados
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Plan de pago</mat-label>
+      <mat-select [formControl]="paymentPlans" multiple>
+        <mat-select-trigger>
+          {{paymentPlans.value?.[0] || ''}}
+          <span
+            *ngIf="(paymentPlans.value?.length || 0) > 1"
+            class="example-additional-selection"
+          >
+            (+{{ (paymentPlans.value?.length || 0) - 1 }}
+            {{ paymentPlans.value?.length === 2 ? "otro" : "otros" }})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let item of pplans" [value]="item.name">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-dialog-actions
+    align="end"
+    *ngIf="!data.paymentPlans || data.paymentPlans.length === 0"
+  >
+    <button mat-button (click)="cancel()">Cancelar</button>
+    <button mat-button (click)="submit()">Enviar</button>
+  </mat-dialog-actions>
+  <mat-dialog-actions
+    align="end"
+    *ngIf="data.paymentPlans && data.paymentPlans.length > 0"
+  >
+    <button mat-button (click)="cancel()">Aceptar</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

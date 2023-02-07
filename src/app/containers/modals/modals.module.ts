@@ -14,6 +14,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { CustomerBalanceComponent } from './customer-balance/customer-balance.component';
 import { AddNewSpendingComponent } from './add-new-spending/add-new-spending.component';
 import { AddNewPaymentCComponent } from './add-new-payment-c/add-new-payment-c.component';
+import { SetPaymentPlanComponent } from './set-payment-plan/set-payment-plan.component';
+import { ReceiptListComponent } from './receipt-list/receipt-list.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { AddNewPaymentCComponent } from './add-new-payment-c/add-new-payment-c.c
     CustomerBalanceComponent,
     AddNewSpendingComponent,
     AddNewPaymentCComponent,
+    SetPaymentPlanComponent,
+    ReceiptListComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import { AddNewPaymentCComponent } from './add-new-payment-c/add-new-payment-c.c
     ExportToExcelComponent,
     AddNewPaymentComponent,
     AddNewPaymentPlanComponent,
+    SetPaymentPlanComponent,
+    ReceiptListComponent,
   ],
 })
 export class ModalsModule {}

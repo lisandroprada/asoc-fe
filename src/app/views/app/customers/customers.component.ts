@@ -1,3 +1,4 @@
+import { ReceiptListComponent } from './../../../containers/modals/receipt-list/receipt-list.component';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +14,7 @@ import {
 import { AddNewCustomerComponent } from 'src/app/containers/modals/add-new-customer/add-new-customer.component';
 import { CustomerBalanceComponent } from 'src/app/containers/modals/customer-balance/customer-balance.component';
 import { ExportToExcelComponent } from 'src/app/containers/modals/export-to-excel/export-to-excel.component';
+import { SetPaymentPlanComponent } from 'src/app/containers/modals/set-payment-plan/set-payment-plan.component';
 import { CustomerData } from 'src/app/interfaces/ICustomer';
 import { MenuItem } from 'src/app/interfaces/IMenuItem';
 import { CommonService } from 'src/app/services/common.service';
@@ -77,6 +79,7 @@ export class CustomersComponent implements AfterViewInit {
     'dateOfBird',
     'phone',
     'status',
+    'paymentPlans',
     'since',
     'actions',
   ];
@@ -101,8 +104,6 @@ export class CustomersComponent implements AfterViewInit {
   ): void {
     if (event.action === 'addAssociate') {
       this.dialog.open(AddNewCustomerComponent, {
-        // width: '640px',
-        // height: '600px',
         maxHeight: '100vh',
         enterAnimationDuration,
         exitAnimationDuration,
@@ -126,16 +127,41 @@ export class CustomersComponent implements AfterViewInit {
         data: data,
       });
     }
+    if (event.action === 'setPaymentPlan') {
+      this.dialog.open(SetPaymentPlanComponent, {
+        // minWidth: '800px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: data,
+      });
+    }
+    if (event.action === 'receiptList') {
+      this.dialog.open(ReceiptListComponent, {
+        // minWidth: '800px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: data,
+      });
+    }
   }
 
   editCustomer(item: any) {
-    console.log(item);
     const event = { action: 'addAssociate' };
     this.openDialog(event, '300ms', '300ms', item);
   }
 
   customerBalance(item: any) {
     const event = { action: 'customerBalance' };
+    this.openDialog(event, '300ms', '300ms', item);
+  }
+
+  setPaymentPlan(item: any) {
+    const event = { action: 'setPaymentPlan' };
+    this.openDialog(event, '300ms', '300ms', item);
+  }
+
+  receiptList(item: any) {
+    const event = { action: 'receiptList' };
     this.openDialog(event, '300ms', '300ms', item);
   }
 

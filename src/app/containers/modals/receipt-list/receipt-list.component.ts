@@ -1,3 +1,4 @@
+import { BalanceService } from 'src/app/services/balance.service';
 import {
   AfterViewInit,
   Component,
@@ -8,15 +9,12 @@ import {
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { catchError, map, merge, startWith, switchMap } from 'rxjs';
-import { MasterAccount } from 'src/app/interfaces/IMasterAccount';
-import { BalanceService } from 'src/app/services/balance.service';
+import { merge, startWith, switchMap, catchError, map } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
-import { AddNewPaymentCComponent } from '../add-new-payment-c/add-new-payment-c.component';
 
 @Component({
-  selector: 'app-customer-balance',
-  templateUrl: './customer-balance.component.html',
+  selector: 'app-receipt-list',
+  templateUrl: './receipt-list.component.html',
   styles: [
     `
       table {
@@ -31,7 +29,7 @@ import { AddNewPaymentCComponent } from '../add-new-payment-c/add-new-payment-c.
     `,
   ],
 })
-export class CustomerBalanceComponent implements OnInit, AfterViewInit {
+export class ReceiptListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -41,21 +39,13 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
   pageSize: number = 5;
   timer: any;
 
-  displayedColumns: string[] = [
-    'name',
-    'description',
-    'amount',
-    'balance',
-    'dueDate',
-    'actions',
-  ];
-
-  dataSource: MasterAccount[] = [];
+  displayedColumns: string[] = ['type', 'date', 'amount', 'actions'];
+  dataSource: [] = [];
 
   constructor(
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private balanceService: BalanceService,
-    public dialog: MatDialog,
     private commonService: CommonService
   ) {
     this.commonService.componentMethodCalled$.subscribe(() => {
@@ -63,32 +53,18 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openDialog(
-    event: any,
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    data?: any
-  ): void {
-    if (event.action === 'addNewPaymentC') {
-      this.dialog.open(AddNewPaymentCComponent, {
-        // width: '640px',
-        // height: '600px',
-        maxHeight: '100vh',
-        enterAnimationDuration,
-        exitAnimationDuration,
-        data: data,
-      });
-    }
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+    this.renderTable();
   }
 
-  // renderTable() {
-  //   this.balanceService
-  //     .getMasterAccounts('dueDate', '', 0, 5, '', this.data._id)
-  //     .subscribe((response: any) => {
-  //       this.dataSource = response.data;
-  //       console.log(this.dataSource);
-  //     });
-  // }
+  print(item: any) {}
+
+  cancel() {
+    this.dialog.closeAll();
+  }
 
   renderTable() {
     merge(this.sort.sortChange, this.paginator.page)
@@ -96,7 +72,7 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.balanceService!.getMasterAccounts(
+          return this.balanceService!.getReceipt(
             this.sort.active,
             this.sort.direction,
             this.paginator.pageIndex,
@@ -124,19 +100,6 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
       });
   }
 
-  addPayment(item: any) {
-    console.log(item);
-    const event = { action: 'addNewPaymentC' };
-    this.openDialog(event, '300ms', '300ms', item);
-  }
-
-  ngOnInit(): void {}
-
-  ngAfterViewInit() {
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-    this.renderTable();
-  }
-
   pageChanged(event: any) {
     this.pageSize = event.pageSize;
 
@@ -147,6 +110,7 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
     }, 700);
   }
 }
+
 function observableOf(arg0: null): any {
   throw new Error('Function not implemented.');
 }

@@ -1,3 +1,4 @@
+import { SetPaymentPlanComponent } from 'src/app/containers/modals/set-payment-plan/set-payment-plan.component';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -104,13 +105,29 @@ export class AddNewCustomerComponent implements OnInit {
     if (this.data._id) {
       this.customerService
         .updateOne(this.data._id, this.forma.value)
-        .subscribe((data) => {
+        .subscribe((data: any) => {
           this.commonService.callComponentMethod();
+
+          if (!data.paymentPlans || data.paymentPlans.length === 0) {
+            this.openDialog(
+              '300ms',
+              '300ms',
+              SetPaymentPlanComponent,
+              data.data,
+              true
+            );
+          }
         });
     } else {
       this.customerService
         .createCustomer(this.forma.value)
         .subscribe((response: any) => {
+          this.openDialog(
+            '300ms',
+            '300ms',
+            SetPaymentPlanComponent,
+            response.data
+          );
           this.commonService.callComponentMethod();
         });
     }
@@ -125,13 +142,18 @@ export class AddNewCustomerComponent implements OnInit {
   openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string,
-    component: any
+    component: any,
+    data?: any,
+    dirty?: boolean
   ): void {
-    if (this.forma.dirty) {
+    if (this.forma.dirty || dirty) {
       const dialogRef = this.dialog.open(component, {
-        width: '340px',
+        // width: '340px',
+        minHeight: '300px',
+        // height: '80%',
         enterAnimationDuration,
         exitAnimationDuration,
+        data,
       });
     } else {
       this.dialog.closeAll();

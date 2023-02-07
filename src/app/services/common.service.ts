@@ -15,6 +15,7 @@ export class CommonService {
 
   // Service message commands
   callComponentMethod() {
+    console.log('llamado');
     this.componentMethodCallSource.next(null);
   }
 }
