@@ -68,6 +68,7 @@ export class AddNewPaymentCComponent implements OnInit {
 
     const formulario = {
       ...this.forma.value,
+      description: this.data.description,
       _id: this.data._id,
       customerId: this.data.target,
     };

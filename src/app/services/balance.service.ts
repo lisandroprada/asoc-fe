@@ -81,4 +81,9 @@ export class BalanceService {
     const url = apiURL + '/receipts/batchpayment';
     return this.http.post(url, '');
   }
+
+  getStats() {
+    const url = apiURL + '/receipts/stats';
+    return this.http.get(url);
+  }
 }

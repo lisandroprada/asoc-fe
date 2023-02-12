@@ -39,7 +39,13 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
   pageSize: number = 5;
   timer: any;
 
-  displayedColumns: string[] = ['type', 'date', 'amount', 'actions'];
+  displayedColumns: string[] = [
+    'type',
+    'date',
+    'description',
+    'amount',
+    'actions',
+  ];
   dataSource: [] = [];
 
   constructor(

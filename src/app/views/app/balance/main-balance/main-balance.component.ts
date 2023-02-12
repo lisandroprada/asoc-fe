@@ -4,6 +4,7 @@ import { MenuItem } from 'src/app/interfaces/IMenuItem';
 import { AddNewPaymentComponent } from 'src/app/containers/modals/add-new-payment/add-new-payment.component';
 import { AddNewPaymentPlanComponent } from 'src/app/containers/modals/add-new-payment-plan/add-new-payment-plan.component';
 import { MatDialog } from '@angular/material/dialog';
+import { BalanceService } from 'src/app/services/balance.service';
 
 @Component({
   selector: 'app-main-balance',
@@ -42,10 +43,20 @@ export class MainBalanceComponent implements OnInit {
   data = {
     total: 1000,
     activos: 500,
-    retirados: 200,
+    totalPeriodo: 200,
     birthdays: 5,
   };
-  constructor(public dialog: MatDialog) {}
+
+  constructor(
+    public dialog: MatDialog,
+    private balancesService: BalanceService
+  ) {
+    this.balancesService.getStats().subscribe((res: any) => {
+      console.log(res);
+      this.data.total = res.totalIncome;
+      this.data.totalPeriodo = res.totalIncomeActual;
+    });
+  }
 
   ngOnInit(): void {}
 

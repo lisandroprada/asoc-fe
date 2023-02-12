@@ -6,22 +6,23 @@
 
 <div class="card-grid_container">
   <app-card-resumen
-    [title]="'Pagos'"
+    [title]="'Recaudación Real'"
     [value]="data.total"
     [icon]="'query_stats'"
   ></app-card-resumen>
   <app-card-resumen
-    [title]="'Saldos'"
+    [title]="'Ingreso del Período'"
+    [value]="data.totalPeriodo"
+    [icon]="'receipt_long'"
+    [color]="'blue-olympic'"
+  ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Saldo en caja'"
     [value]="data.activos"
     [icon]="'account_balance'"
     [color]="'blue-yale'"
   ></app-card-resumen>
-  <app-card-resumen
-    [title]="'Recibos'"
-    [value]="data.retirados"
-    [icon]="'receipt_long'"
-    [color]="'blue-olympic'"
-  ></app-card-resumen>
+
   <!-- <app-card-resumen
     [title]="'Cumpleaños'"
     [value]="data.birthdays"
