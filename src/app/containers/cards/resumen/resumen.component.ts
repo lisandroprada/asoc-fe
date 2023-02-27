@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ResumenComponent implements OnInit {
   @Input() title: any;
   @Input() value: any;
+  @Input() symbol: boolean = false;
   @Input() icon: any;
   @Input() color: any;
 

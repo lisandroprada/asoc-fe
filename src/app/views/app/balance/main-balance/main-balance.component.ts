@@ -5,6 +5,7 @@ import { AddNewPaymentComponent } from 'src/app/containers/modals/add-new-paymen
 import { AddNewPaymentPlanComponent } from 'src/app/containers/modals/add-new-payment-plan/add-new-payment-plan.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BalanceService } from 'src/app/services/balance.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-main-balance',
@@ -42,19 +43,31 @@ export class MainBalanceComponent implements OnInit {
 
   data = {
     total: 1000,
-    activos: 500,
+    totalIncome: 500,
     totalPeriodo: 200,
-    birthdays: 5,
+    expensesTotal: 5,
   };
 
   constructor(
     public dialog: MatDialog,
-    private balancesService: BalanceService
+    private balancesService: BalanceService,
+    private commonService: CommonService
   ) {
+    this.commonService.componentMethodCalled$.subscribe(() => {
+      this.renderStats();
+    });
+
+    this.renderStats();
+  }
+
+  renderStats() {
     this.balancesService.getStats().subscribe((res: any) => {
       console.log(res);
+
       this.data.total = res.totalIncome;
+      this.data.totalIncome = res.total;
       this.data.totalPeriodo = res.totalIncomeActual;
+      this.data.expensesTotal = res.expensesTotal;
     });
   }
 

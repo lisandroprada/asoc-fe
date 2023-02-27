@@ -9,29 +9,33 @@
     [title]="'Recaudación Real'"
     [value]="data.total"
     [icon]="'query_stats'"
+    [symbol]="true"
   ></app-card-resumen>
   <app-card-resumen
     [title]="'Ingreso del Período'"
     [value]="data.totalPeriodo"
     [icon]="'receipt_long'"
     [color]="'blue-olympic'"
+    [symbol]="true"
   ></app-card-resumen>
   <app-card-resumen
-    [title]="'Saldo en caja'"
-    [value]="data.activos"
+    [title]="'Recaudación Total'"
+    [value]="data.totalIncome"
     [icon]="'account_balance'"
     [color]="'blue-yale'"
+    [symbol]="true"
   ></app-card-resumen>
 
-  <!-- <app-card-resumen
-    [title]="'Cumpleaños'"
-    [value]="data.birthdays"
-    [icon]="'cake'"
+  <app-card-resumen
+    [title]="'Gasto Total'"
+    [value]="data.expensesTotal"
+    [icon]="'money_off'"
     [color]="'blue-olympic'"
-  ></app-card-resumen> -->
+    [symbol]="true"
+  ></app-card-resumen>
 </div>
 
 <div class="grid-two_container">
   <app-account-plans></app-account-plans>
-  <div class="overview_card">TABLA | CLIENTES CON DEUDA</div>
+  <app-expenses></app-expenses>
 </div>

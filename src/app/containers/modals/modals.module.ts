@@ -16,6 +16,7 @@ import { AddNewSpendingComponent } from './add-new-spending/add-new-spending.com
 import { AddNewPaymentCComponent } from './add-new-payment-c/add-new-payment-c.component';
 import { SetPaymentPlanComponent } from './set-payment-plan/set-payment-plan.component';
 import { ReceiptListComponent } from './receipt-list/receipt-list.component';
+import { AddNewSupplierComponent } from './add-new-supplier/add-new-supplier.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ReceiptListComponent } from './receipt-list/receipt-list.component';
     AddNewPaymentCComponent,
     SetPaymentPlanComponent,
     ReceiptListComponent,
+    AddNewSupplierComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { ReceiptListComponent } from './receipt-list/receipt-list.component';
     AddNewPaymentPlanComponent,
     SetPaymentPlanComponent,
     ReceiptListComponent,
+    AddNewSupplierComponent,
   ],
 })
 export class ModalsModule {}

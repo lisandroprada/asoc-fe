@@ -36,7 +36,7 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-  pageSize: number = 5;
+  pageSize: number = 6;
   timer: any;
 
   displayedColumns: string[] = [
@@ -73,6 +73,7 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
   }
 
   renderTable() {
+    console.log(this.sort.active);
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith({}),

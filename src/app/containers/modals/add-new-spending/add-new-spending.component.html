@@ -4,14 +4,14 @@
     <div class="grid-one_container">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Concepto</mat-label>
-        <mat-select formControlName="concepto" name="concepto">
+        <mat-select formControlName="Id_Account" name="Id_Account">
           <mat-option>Elija una opción</mat-option>
           <mat-option
             *ngFor="let item of conceptos"
             [disabled]="item.disabled"
-            [value]="item.value"
+            [value]="item"
           >
-            {{ item.viewValue }}
+            {{ item.Description }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -19,7 +19,7 @@
     <div class="grid-one_container">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Detalle</mat-label>
-        <input matInput formControlName="detalle" />
+        <input matInput formControlName="additionalDetail" />
       </mat-form-field>
     </div>
     <div class="grid-two_container">
@@ -37,10 +37,44 @@
         />
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Fecha de inicio</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="startDate" />
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="grid-two_container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tipo de comprobante</mat-label>
+        <mat-select formControlName="type" name="type">
+          <mat-option>Elija una opción</mat-option>
+          <mat-option
+            *ngFor="let item of typeOfVoucher"
+            [disabled]="item.disabled"
+            [value]="item.value"
+          >
+            {{ item.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Número de comprobante</mat-label>
+        <input matInput formControlName="voucher" />
+      </mat-form-field>
+    </div>
+    <div class="grid-one_container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Proveedor</mat-label>
+        <mat-select formControlName="supplier" name="supplier">
+          <mat-option>Elija una opción</mat-option>
+          <mat-option
+            *ngFor="let item of suppliers"
+            [disabled]="item.disabled"
+            [value]="item"
+          >
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
   </form>

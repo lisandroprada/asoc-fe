@@ -1,1 +1,13 @@
-<p>settings works!</p>
+<app-page-header
+  [menuItems]="menuItems"
+  [menuVisible]="false"
+  (menuSelected)="openDialog($event, '300ms', '300ms')"
+></app-page-header>
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="Proveedores">
+    <app-suppliers></app-suppliers>
+  </mat-tab>
+  <mat-tab label="Plan de cuentas"><h1>Cuentas</h1></mat-tab>
+  <mat-tab label="Usuarios"><h1>Usuarios</h1></mat-tab>
+</mat-tab-group>

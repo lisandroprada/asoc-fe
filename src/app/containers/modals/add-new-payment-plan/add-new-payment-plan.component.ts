@@ -8,6 +8,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-add-new-payment-plan',
@@ -42,7 +43,8 @@ export class AddNewPaymentPlanComponent implements OnInit {
     private fb: FormBuilder,
     public dialog: MatDialog,
     private balanceService: BalanceService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private commonService: CommonService
   ) {
     this.createForm();
   }
@@ -88,6 +90,7 @@ export class AddNewPaymentPlanComponent implements OnInit {
           'Volver'
         );
         this.dialog.closeAll();
+        this.commonService.callComponentMethod();
       });
   }
 

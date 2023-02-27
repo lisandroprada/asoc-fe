@@ -1,6 +1,7 @@
 import { BalanceService } from 'src/app/services/balance.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-account-plans',
@@ -34,7 +35,17 @@ export class AccountPlansComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  constructor(private balanceService: BalanceService) {
+  constructor(
+    private balanceService: BalanceService,
+    private commonService: CommonService
+  ) {
+    this.commonService.componentMethodCalled$.subscribe(() => {
+      this.renderTable();
+    });
+    this.renderTable();
+  }
+
+  renderTable() {
     this.balanceService.getPaymentPlan().subscribe((data: any) => {
       console.log({ data });
       this.data = data;

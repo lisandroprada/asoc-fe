@@ -623,7 +623,7 @@ body {
     padding: 5px;
   }
   .overview-card-value {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .overview_card mat-icon {
@@ -652,7 +652,7 @@ body {
 }
 
 .overview-card-value {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -706,6 +706,11 @@ body {
 .grid-three_container {
   display: grid;
   grid-template-columns: 33% 32% 33%;
+  gap: 1%;
+}
+.grid-four_container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
   gap: 1%;
 }
 
