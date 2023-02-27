@@ -21,7 +21,7 @@
   <app-card-resumen
     [title]="'Recaudación Total'"
     [value]="data.totalIncome"
-    [icon]="'account_balance'"
+    [icon]="'paid'"
     [color]="'blue-yale'"
     [symbol]="true"
   ></app-card-resumen>
@@ -36,6 +36,12 @@
 </div>
 
 <div class="grid-two_container">
-  <app-account-plans></app-account-plans>
   <app-expenses></app-expenses>
+  <app-card-resumen
+    [title]="'Saldo actual'"
+    [value]="data.totalIncome - data.expensesTotal"
+    [icon]="'account_balance'"
+    [color]="'blue-olympic'"
+    [symbol]="true"
+  ></app-card-resumen>
 </div>
