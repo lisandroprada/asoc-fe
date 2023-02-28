@@ -54,6 +54,10 @@ export class AddNewCustomerComponent implements OnInit {
     if (!this.data) {
       this.data = {};
     }
+    console.log(this.data);
+
+    var dateOfBird = new Date(this.data.dateOfBird);
+    dateOfBird.setTime(dateOfBird.getTime() + 3 * 60 * 60 * 1000);
     this.forma = this.fb.group({
       name: [
         this.data.name,
@@ -70,7 +74,7 @@ export class AddNewCustomerComponent implements OnInit {
       phone: [this.data.phone, Validators.required],
       status: [this.data.status, Validators.required],
       email: [this.data.email, Validators.email],
-      dateOfBird: [this.data.dateOfBird, Validators.required],
+      dateOfBird: [dateOfBird, Validators.required],
       since: [this.data.since, Validators.required],
     });
   }
