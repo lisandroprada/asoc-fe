@@ -1,3 +1,4 @@
+import { AddNewIncomeComponent } from './../../../../containers/modals/add-new-income/add-new-income.component';
 import { AddNewSpendingComponent } from './../../../../containers/modals/add-new-spending/add-new-spending.component';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'src/app/interfaces/IMenuItem';
@@ -14,7 +15,7 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class MainBalanceComponent implements OnInit {
   menuItems: MenuItem[] = [
-    { name: 'Pagos', icon: 'payments', action: 'payments', disabled: false },
+    { name: 'Pagos', icon: 'payments', action: 'payments', disabled: true },
     {
       name: 'Plan de Pagos',
       icon: 'account_tree',
@@ -25,6 +26,12 @@ export class MainBalanceComponent implements OnInit {
       name: 'Egreso',
       icon: 'shopping_cart_checkout',
       action: 'spendings',
+      disabled: false,
+    },
+    {
+      name: 'Ingreso',
+      icon: 'add_shopping_cart',
+      action: 'incomes',
       disabled: false,
     },
     {
@@ -103,6 +110,17 @@ export class MainBalanceComponent implements OnInit {
     }
     if (event.action === 'spendings') {
       this.dialog.open(AddNewSpendingComponent, {
+        width: '640px',
+        // height: '600px',
+        maxHeight: '100vh',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: data,
+        disableClose: true,
+      });
+    }
+    if (event.action === 'incomes') {
+      this.dialog.open(AddNewIncomeComponent, {
         width: '640px',
         // height: '600px',
         maxHeight: '100vh',
