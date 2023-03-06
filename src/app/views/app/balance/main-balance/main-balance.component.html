@@ -33,13 +33,20 @@
     [color]="'blue-olympic'"
     [symbol]="true"
   ></app-card-resumen>
+  <app-card-resumen
+    [title]="'Ingresos Extras'"
+    [value]="data.extraIncome"
+    [icon]="'redeem'"
+    [color]="'blue-olympic'"
+    [symbol]="true"
+  ></app-card-resumen>
 </div>
 
 <div class="grid-two_container">
   <app-expenses></app-expenses>
   <app-card-resumen
     [title]="'Saldo actual'"
-    [value]="data.totalIncome - data.expensesTotal"
+    [value]="data.totalIncome - data.expensesTotal + data.extraIncome"
     [icon]="'account_balance'"
     [color]="'blue-olympic'"
     [symbol]="true"

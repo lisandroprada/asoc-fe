@@ -49,10 +49,11 @@ export class MainBalanceComponent implements OnInit {
   ];
 
   data = {
-    total: 1000,
-    totalIncome: 500,
-    totalPeriodo: 200,
-    expensesTotal: 5,
+    total: 0,
+    totalIncome: 0,
+    totalPeriodo: 0,
+    expensesTotal: 0,
+    extraIncome: 0,
   };
 
   constructor(
@@ -75,6 +76,7 @@ export class MainBalanceComponent implements OnInit {
       this.data.totalIncome = res.total;
       this.data.totalPeriodo = res.totalIncomeActual;
       this.data.expensesTotal = res.expensesTotal;
+      this.data.extraIncome = res.totalExtraIncomes;
     });
   }
 
