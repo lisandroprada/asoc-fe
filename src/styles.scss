@@ -325,8 +325,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  height: 100px;
+  padding: 10px;
+  height: 70px;
   border-radius: 4px;
   color: darkblue;
   box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
@@ -610,8 +610,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  height: 100px;
+  padding: 15px;
+  height: 70px;
   border-radius: 4px;
   color: darkblue;
   box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
@@ -641,9 +641,9 @@ body {
 }
 
 .overview_card mat-icon {
-  font-size: 2.4rem;
-  height: 3rem;
-  width: 3rem;
+  font-size: 1.4rem;
+  height: 2rem;
+  width: 2rem;
   background: $primary-color;
   color: $background-color;
   padding: 5px;
@@ -720,7 +720,7 @@ body {
   gap: 1%;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 960px) {
   .grid-two_container {
     display: grid;
     grid-template-columns: auto;

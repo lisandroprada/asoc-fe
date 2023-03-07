@@ -4,35 +4,44 @@
   (menuSelected)="openDialog($event, '300ms', '300ms')"
 ></app-page-header>
 
-<div class="card-grid_container">
-  <app-card-resumen
-    [title]="'Recaudación Real'"
-    [value]="data.total"
-    [icon]="'query_stats'"
-    [symbol]="true"
-  ></app-card-resumen>
-  <app-card-resumen
-    [title]="'Ingreso del Período'"
-    [value]="data.totalPeriodo"
-    [icon]="'receipt_long'"
-    [color]="'blue-olympic'"
-    [symbol]="true"
-  ></app-card-resumen>
-  <app-card-resumen
-    [title]="'Recaudación Total'"
-    [value]="data.totalIncome"
-    [icon]="'paid'"
-    [color]="'blue-yale'"
-    [symbol]="true"
-  ></app-card-resumen>
+<div class="grid-two_container">
+  <div class="grid-two_container">
+    <app-card-resumen
+      [title]="'Recaudación Real'"
+      [value]="data.total"
+      [icon]="'query_stats'"
+      [symbol]="true"
+    ></app-card-resumen>
+    <app-card-resumen
+      [title]="'Ingreso del Período'"
+      [value]="data.totalPeriodo"
+      [icon]="'receipt_long'"
+      [color]="'blue-olympic'"
+      [symbol]="true"
+    ></app-card-resumen>
+  </div>
+  <div class="grid-two_container">
+    <app-card-resumen
+      [title]="'Recaudación Total'"
+      [value]="data.totalIncome"
+      [icon]="'paid'"
+      [color]="'blue-yale'"
+      [symbol]="true"
+    ></app-card-resumen>
 
-  <app-card-resumen
-    [title]="'Gasto Total'"
-    [value]="data.expensesTotal"
-    [icon]="'money_off'"
-    [color]="'blue-olympic'"
-    [symbol]="true"
-  ></app-card-resumen>
+    <app-card-resumen
+      [title]="'Gasto Total'"
+      [value]="data.expensesTotal"
+      [icon]="'money_off'"
+      [color]="'blue-olympic'"
+      [symbol]="true"
+    ></app-card-resumen>
+  </div>
+
+  <!-- </div> -->
+</div>
+
+<div class="grid-two_container">
   <app-card-resumen
     [title]="'Ingresos Extras'"
     [value]="data.extraIncome"
@@ -40,10 +49,6 @@
     [color]="'blue-olympic'"
     [symbol]="true"
   ></app-card-resumen>
-</div>
-
-<div class="grid-two_container">
-  <app-expenses></app-expenses>
   <app-card-resumen
     [title]="'Saldo actual'"
     [value]="data.totalIncome - data.expensesTotal + data.extraIncome"
@@ -51,4 +56,14 @@
     [color]="'blue-olympic'"
     [symbol]="true"
   ></app-card-resumen>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Gastos">
+      <app-expenses></app-expenses>
+    </mat-tab>
+    <mat-tab label="Ingresos"> <app-incomes></app-incomes> </mat-tab>
+    <!-- <mat-tab label="Plan de cuentas">
+      <app-account-plans></app-account-plans>
+    </mat-tab> -->
+    <!-- <mat-tab label="Usuarios"><h1>Usuarios</h1></mat-tab> -->
+  </mat-tab-group>
 </div>
