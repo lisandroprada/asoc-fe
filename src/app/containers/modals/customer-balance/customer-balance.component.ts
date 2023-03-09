@@ -58,6 +58,7 @@ export class CustomerBalanceComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
     private commonService: CommonService
   ) {
+    console.log(data);
     this.commonService.componentMethodCalled$.subscribe(() => {
       this.renderTable();
     });
