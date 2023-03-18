@@ -65,7 +65,7 @@ export class BalanceService {
     customerId: string
   ) {
     let params = new HttpParams();
-    params = params.append('sort', sortActive);
+    params = params.append('sort', '-date');
     params = params.append('limit', pageSize);
     params = params.append('page', page);
     params = params.append('customerId', customerId);
