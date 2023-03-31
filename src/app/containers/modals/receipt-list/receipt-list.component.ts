@@ -11,6 +11,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { merge, startWith, switchMap, catchError, map } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-receipt-list',
@@ -47,6 +49,7 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
     'actions',
   ];
   dataSource: [] = [];
+  dataReport: any;
 
   constructor(
     public dialog: MatDialog,
@@ -59,7 +62,14 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.balanceService
+      .getReceiptsNoOptions(this.data._id)
+      .subscribe((data: any) => {
+        this.dataReport = data.data;
+        console.log(this.dataReport);
+      });
+  }
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
@@ -115,6 +125,41 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
     this.timer = setTimeout(() => {
       this.renderTable();
     }, 700);
+  }
+
+  exportToExcel(): void {
+    // Tipo	Fecha	Descripción	Monto
+
+    const data = this.dataReport.map((row: any) => {
+      return {
+        column1: row.type,
+        column2: row.date,
+        column3: row.description,
+        column4: row.amount,
+      };
+    });
+    const worksheet = XLSX.utils.json_to_sheet(data);
+
+    // Cambiar los títulos de las columnas
+    worksheet['A1'].v = 'Tipo de Comprobante';
+    worksheet['B1'].v = 'Fecha';
+    worksheet['C1'].v = 'Descripción';
+    worksheet['D1'].v = 'Monto';
+
+    const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array',
+    });
+    this.saveAsExcelFile(excelBuffer, 'miarchivo');
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'application/octet-stream' });
+    FileSaver.saveAs(
+      data,
+      fileName + '_export_' + new Date().getTime() + '.xlsx'
+    );
   }
 }
 

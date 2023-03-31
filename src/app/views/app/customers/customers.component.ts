@@ -19,6 +19,7 @@ import { CustomerData } from 'src/app/interfaces/ICustomer';
 import { MenuItem } from 'src/app/interfaces/IMenuItem';
 import { CommonService } from 'src/app/services/common.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { ExportCustomersComponent } from 'src/app/containers/modals/export-customers/export-customers.component';
 
 @Component({
   selector: 'app-customers',
@@ -57,6 +58,12 @@ export class CustomersComponent implements AfterViewInit {
       name: 'Exportar a Excel',
       icon: 'table_chart',
       action: 'exportToExcel',
+      disabled: false,
+    },
+    {
+      name: 'Exportar a Asociados',
+      icon: 'table_chart',
+      action: 'exportCustomers',
       disabled: false,
     },
   ];
@@ -104,6 +111,14 @@ export class CustomersComponent implements AfterViewInit {
   ): void {
     if (event.action === 'addAssociate') {
       this.dialog.open(AddNewCustomerComponent, {
+        maxHeight: '100vh',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: data,
+      });
+    }
+    if (event.action === 'exportCustomers') {
+      this.dialog.open(ExportCustomersComponent, {
         maxHeight: '100vh',
         enterAnimationDuration,
         exitAnimationDuration,

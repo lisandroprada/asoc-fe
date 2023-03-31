@@ -77,6 +77,13 @@ export class BalanceService {
     return this.http.get(url, { params });
   }
 
+  getReceiptsNoOptions(customerId: string) {
+    const url = apiURL + '/receipts/nooptions';
+    let params = new HttpParams();
+    params = params.append('customerId', customerId);
+    return this.http.get(url, { params });
+  }
+
   processBatch() {
     const url = apiURL + '/receipts/batchpayment';
     return this.http.post(url, '');

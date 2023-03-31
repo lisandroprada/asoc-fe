@@ -29,7 +29,11 @@ export class CustomerService {
     return this.http.get(url, { params });
   }
 
-  getCustomer() {}
+  getCustomersReport() {
+    // let params = new HttpParams();
+    const url = apiURL + '/customers/nooptions';
+    return this.http.get(url);
+  }
 
   createCustomer(forma: CustomerData) {
     const url = apiURL + '/customers/';

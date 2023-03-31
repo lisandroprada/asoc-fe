@@ -1,9 +1,10 @@
+import { ExportCustomersComponent } from './export-customers/export-customers.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddNewCustomerComponent } from './add-new-customer/add-new-customer.component';
 import { MaterialModule } from 'src/app/components/material/material.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SuccessComponent } from './success/success.component';
 import { SureComponent } from './sure/sure.component';
 import { ExistsTrueComponent } from './exists-true/exists-true.component';
@@ -37,6 +38,7 @@ import { AddNewContributorComponent } from './add-new-contributor/add-new-contri
     AddNewSupplierComponent,
     AddNewIncomeComponent,
     AddNewContributorComponent,
+    ExportCustomersComponent,
   ],
   imports: [
     CommonModule,
@@ -56,6 +58,7 @@ import { AddNewContributorComponent } from './add-new-contributor/add-new-contri
     AddNewSupplierComponent,
     AddNewIncomeComponent,
     AddNewContributorComponent,
+    ExportCustomersComponent,
   ],
 })
 export class ModalsModule {}
