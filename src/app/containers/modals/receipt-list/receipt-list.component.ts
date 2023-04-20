@@ -140,11 +140,20 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
     });
     const worksheet = XLSX.utils.json_to_sheet(data);
 
+    const dateStyle = { numFmt: 'dd/mm/yyyy' };
+
     // Cambiar los títulos de las columnas
     worksheet['A1'].v = 'Tipo de Comprobante';
     worksheet['B1'].v = 'Fecha';
     worksheet['C1'].v = 'Descripción';
     worksheet['D1'].v = 'Monto';
+
+    worksheet['B1'].s = dateStyle;
+
+    data.forEach((row: any, index: any) => {
+      const cell = XLSX.utils.encode_cell({ r: index + 1, c: 1 }); // Obtener la celda de fecha
+      worksheet[cell].s = dateStyle; // Aplicar el estilo a la celda de fecha
+    });
 
     const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
     const excelBuffer = XLSX.write(workbook, {
