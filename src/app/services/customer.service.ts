@@ -29,6 +29,11 @@ export class CustomerService {
     return this.http.get(url, { params });
   }
 
+  getCustomerById(id: string) {
+    const url = `${apiURL}/customers/${id}`;
+    return this.http.get(url);
+  }
+
   getCustomersReport() {
     // let params = new HttpParams();
     const url = apiURL + '/customers/nooptions';

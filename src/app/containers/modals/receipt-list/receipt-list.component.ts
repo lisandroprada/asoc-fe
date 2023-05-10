@@ -13,6 +13,7 @@ import { merge, startWith, switchMap, catchError, map } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
+import { PdfReceiptComponent } from '../pdf-receipt/pdf-receipt.component';
 
 @Component({
   selector: 'app-receipt-list',
@@ -77,6 +78,12 @@ export class ReceiptListComponent implements OnInit, AfterViewInit {
   }
 
   print(item: any) {}
+
+  saveAsPdf(item: any) {
+    this.dialog.open(PdfReceiptComponent, {
+      data: item,
+    });
+  }
 
   cancel() {
     this.dialog.closeAll();

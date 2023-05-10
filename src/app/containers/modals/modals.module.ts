@@ -20,6 +20,8 @@ import { ReceiptListComponent } from './receipt-list/receipt-list.component';
 import { AddNewSupplierComponent } from './add-new-supplier/add-new-supplier.component';
 import { AddNewIncomeComponent } from './add-new-income/add-new-income.component';
 import { AddNewContributorComponent } from './add-new-contributor/add-new-contributor.component';
+import { PdfReceiptComponent } from './pdf-receipt/pdf-receipt.component';
+import { PipesModuleModule } from '../../pipes/pipes-module.module';
 
 @NgModule({
   declarations: [
@@ -39,13 +41,7 @@ import { AddNewContributorComponent } from './add-new-contributor/add-new-contri
     AddNewIncomeComponent,
     AddNewContributorComponent,
     ExportCustomersComponent,
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
+    PdfReceiptComponent,
   ],
   exports: [
     AddNewCustomerComponent,
@@ -59,6 +55,14 @@ import { AddNewContributorComponent } from './add-new-contributor/add-new-contri
     AddNewIncomeComponent,
     AddNewContributorComponent,
     ExportCustomersComponent,
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    PipesModuleModule,
   ],
 })
 export class ModalsModule {}
