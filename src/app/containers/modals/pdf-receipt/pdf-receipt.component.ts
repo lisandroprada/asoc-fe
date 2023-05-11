@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-pdf-receipt',
@@ -9,8 +10,26 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./pdf-receipt.component.scss'],
 })
 export class PdfReceiptComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  customer: any;
+  fileName: any;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private customerService: CustomerService
+  ) {
     console.log(data);
+    this.customerService
+      .getCustomerById(data.customerId)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.customer = res.data;
+        this.fileName = `${new Date(this.data.date).getFullYear()}-${new Date(
+          this.data.date
+        ).getUTCMonth()}-${this.customer.name.replaceAll(' ', '')}-RECIBO${
+          this.data.receiptNumber ? this.data.receiptNumber : this.data._id
+        }`;
+        console.log(this.fileName);
+      });
   }
 
   ngOnInit(): void {}
@@ -36,7 +55,8 @@ export class PdfReceiptComponent implements OnInit {
           imageWidth,
           imageHeight
         );
-        pdf.save('Recibo.pdf');
+
+        pdf.save(this.fileName);
       });
     }
   }
