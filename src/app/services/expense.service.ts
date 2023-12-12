@@ -18,6 +18,7 @@ export class ExpenseService {
     return this.http.get(url, { params });
   }
 
+  // Get expenses
   getExpensesEntries() {
     const url = apiURL + '/expensesentry/';
     let params = new HttpParams();
