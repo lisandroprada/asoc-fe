@@ -52,6 +52,7 @@ export class ExpensesComponent implements OnInit, AfterViewInit {
 
   renderTable() {
     this.expenseService.getExpensesEntries().subscribe((expenses: any) => {
+      console.log(expenses.data, expenses.status, expenses.results);
       this.dataSource = new MatTableDataSource(expenses.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
